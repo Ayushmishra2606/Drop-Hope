@@ -22,8 +22,7 @@ const Footer = () => {
             <li><Link to="/about" className="hover:text-[#2563EB]">About</Link></li>
             <li><Link to="/contact" className="hover:text-[#2563EB]">Contact Us</Link></li>
             <li><Link to="/register" className="hover:text-[#2563EB]">Register as User</Link></li>
-            <li><Link to="/ngo-register" className="hover:text-[#2563EB]">Register as NGO</Link></li>
-
+            <li><Link to="/register" className="hover:text-[#2563EB]">Register as NGO</Link></li>
           </ul>
         </div>
 

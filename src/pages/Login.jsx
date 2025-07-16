@@ -60,12 +60,12 @@ const Login = () => {
         <input type="password" {...register('password' ,{pattern:{
           value: /[A-Za-z0-9!@#$%^&*()_+={}\[\]:;"'<>?,./~`-]{7,17}$/,
           message:"Invalid Format",
-        }} ,{required:{value:true , message:"please Enter the password"} }, {minLength: {value:7 , message:"Minimum Seven character"}})}   placeholder='Password' className='sm:h-[5vw] h-[6vh] w-[65%]  bg-black/20 p-2 border border-gray-300 rounded-md mb-8 placeholder:p-4 placeholder:text-xl placeholder:text-[#64748B] focus:outline-none text-[#64748B] mt-[7vh]'/>
+        }} ,{required:{value:true , message:"please Enter the password"} })}   placeholder='Password' className='sm:h-[5vw] h-[6vh] w-[65%]  bg-black/20 p-2 border border-gray-300 rounded-md mb-8 placeholder:p-4 placeholder:text-xl placeholder:text-[#64748B] focus:outline-none text-[#64748B] mt-[7vh]'/>
         {errors.password && (
           <p className="text-red-500 text-sm">{errors.password.message}</p>
         )}
         <input type="submit" disabled={isSubmitting} value="Log in" className='md:h-[6vw] w-22 lg:w-[10vw] lg:h-[6vh] bg-[#22C55E] sm:text-xl rounded-xl cursor-pointer hover:bg-[#bce7cb]  text-[#64748B] mt-2'/>
-        <a href="/signin" className='text-blue-600 underline hover:text-blue-800'> don't have a account?</a></form>
+        <a href="/register" className='text-blue-600 underline hover:text-blue-800'> don't have a account?</a></form>
 
     </div>
   )
