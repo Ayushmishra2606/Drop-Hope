@@ -3,13 +3,15 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 // import Userdashboard from "./pages/User-dashboard";
-import NGOdashboard from "./pages/NGO-dashboard";
+import NGOdashboard from './pages/NGO-dashboard'; 
+
 import './App.css'
 
 
 function App() {
   return (
     <>
+    <NGOdashboard/>
     </>
   );
 }

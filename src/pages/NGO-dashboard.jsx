@@ -14,11 +14,10 @@ const NGOdashboard=()=>{
             {/* Main */}
             <div className="bg-white h-screen ">
                 <div className="px-4 py-4 font-bold text-2xl   flex flex-col justify-center  items-center">
-                    {/* <h1 className="text-3xl">Welcome, NGO</h1> */}
-                    {/* <button className="bg-green-500 hover:bg-green-600 w-[300px] text-xl text-white font-semibold px-5 py-2 rounded mb-10">
+                    <h1 className="text-3xl">Welcome, NGO</h1>
+                    <button className="bg-green-500 hover:bg-green-600 w-[300px] text-xl mt-5 text-white font-semibold px-5 py-2 rounded mb-10">
                         + Start a New Campaign
-                    </button> */}
-                    <h1>Your Campaigns</h1>
+                    </button>
                 </div>
                 <div className=" w-[80%] h-[40%] mx-auto rounded-2xl bg-white border-b-neutral-500 border-t-neutral-500 shadow-2xl flex justify-center items-center gap-4 my-10">
                         <div className="text-gray-500 italic">
@@ -38,7 +37,7 @@ const NGOdashboard=()=>{
                             "We’d like to donate some winter clothes for your next drive. Please let us know the process."
                         </p>
                         <div className="text-xs text-gray-500 flex justify-between">
-                            <span>— Riya Mehta</span>
+                            <span> — Riya Mehta </span>
                             <span>2 hours ago</span>
                         </div>
                         <button className="mt-2 text-sm text-blue-600 hover:underline">Reply</button>
@@ -57,7 +56,6 @@ const NGOdashboard=()=>{
                     </div>
                 </div>
                 </div>
-
             </div>
         </div>
     )
