@@ -1,7 +1,19 @@
 import Footer from "../components/Footer";
 import NavbarUser from "../components/NavbarUser";
+import { useNavigate } from "react-router";
 
 const Userdashboard=()=>{
+
+    const navigate = useNavigate()
+
+    const detail = ()=>{
+        navigate('campaign/detail')
+    }
+
+    const donate = ()=>{
+        navigate('donate')
+    }
+
     return (
         <div className="bg-neutral-100 h-screen">
             <div className="p-2"></div>
@@ -29,7 +41,7 @@ const Userdashboard=()=>{
                 <button className="text-2xl bg-[#2563EB] rounded-2xl px-8 py-4  ">
                     🤝 Request Help    
                 </button>
-                <button className="text-2xl bg-[#F97316] rounded-2xl px-8 py-4 ">
+                <button className="text-2xl bg-[#F97316] rounded-2xl px-8 py-4 hover:bg-[#ff9c56] " onClick={donate}>
                     Donate Now     
                 </button>
                 <button className="text-2xl bg-[#01cf75] rounded-2xl px-8 py-4 ">
@@ -74,21 +86,21 @@ const Userdashboard=()=>{
                             <span className="">📍 Delhi</span>
                             <p> Providing daily meals to underprivileged children near Yamuna Bank slums.</p>
                             <span className="mb-2">Target: ₹1,00,000</span>
-                            <button className="bg-[#2563EB] w-full mt-2 py-2 rounded-2xl text-white font-medium">Support Now</button>
+                            <button className="bg-[#2563EB] w-full mt-2 py-2 rounded-2xl text-white font-medium" onClick={detail}>Support Now</button>
                         </div>
                         <div className="flex flex-col bg-blue-50 ml-3 rounded px-2 py-4 w-[270px] h-[340px] justify-between shadow-md hover:shadow-2xl transition duration-300">
                             <span className="font-bold text-xl mb-2">Winter Warmth for All</span>
                             <span className="">📍 Shimla</span>
                             <p>Distributing blankets and jackets to the homeless during harsh winter nights.</p>
                             <span className="mb-2">Target: ₹30,000</span>
-                            <button className="bg-[#2563EB] w-full mt-2 py-2 rounded-2xl text-white font-medium" >Support Now</button>
+                            <button className="bg-[#2563EB] w-full mt-2 py-2 rounded-2xl text-white font-medium" onClick={detail}>Support Now</button>
                         </div>
                         <div className="flex flex-col bg-blue-50 ml-3 rounded px-2 py-4 w-[270px] h-[340px] justify-between shadow-md hover:shadow-2xl transition duration-300">
                             <span className="font-bold text-xl mb-2">Help Binod</span>
                             <span className="">📍 Patna, Bihar</span>
                             <p>Help Binod To Raise Fund For His</p>
                             <span className="mb-2">Target: ₹50,000</span>
-                            <button className="bg-[#2563EB] w-full mt-2 py-2 rounded-2xl text-white font-medium">Support Now</button>
+                            <button className="bg-[#2563EB] w-full mt-2 py-2 rounded-2xl text-white font-medium" onClick={detail}>Support Now</button>
                         </div>
                     </div>
                 </div>
