@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
     <div className="w-full text-[#1E293B]">
 
-      {/* Hero Section */}
+      <Navbar/>
+      
       <section className="bg-[#F1F5F9] py-20 text-center px-6">
         <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#2563EB]">
           Be the Drop That Starts a Ripple of Hope
@@ -22,7 +25,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Mission */}
+      
       <section className="py-16 px-6 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-[#2563EB] mb-4">Our Mission</h2>
@@ -34,7 +37,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats */}
+    
       <section className="bg-[#F1F5F9] py-16">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 text-center gap-8 px-4">
           <div>
@@ -52,12 +55,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* How It Works */}
+      
       <section className="py-20 px-6 bg-white">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-[#2563EB] mb-8">How It Works</h2>
           <div className="grid sm:grid-cols-3 gap-8 text-[#64748B]">
-            {/* Step 1 */}
+           
             <div>
               <img
                 src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=600&q=80"
@@ -68,7 +71,7 @@ const Home = () => {
               <p className="text-sm">Individuals and NGOs create accounts with necessary info.</p>
             </div>
 
-            {/* Step 2 */}
+           
             <div>
               <img
                 src="https://imgs.search.brave.com/BmwUN0jX1WsWRZh3MTJzYCv2nkBiCZkO9B7JmQ4NWEE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iYWxy/YWtzaGFiaGFyYXQu/b3JnL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDI0LzAxL0FydGJv/YXJkLTItMS53ZWJw"
@@ -79,7 +82,7 @@ const Home = () => {
               <p className="text-sm">Donors offer help, NGOs list needs – we match them securely.</p>
             </div>
 
-            {/* Step 3 */}
+            
             <div>
               <img
                 src="https://images.pexels.com/photos/5909876/pexels-photo-5909876.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -93,7 +96,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* How It Helps */}
+      
       <section className="py-20 px-6 bg-[#F1F5F9]">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
           <img
@@ -111,6 +114,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <div className="h-[53px] w-[270px] bg-[#5187fd] flex justify-center items-center fixed bottom-14 right-0"><h3 className="text-white text-xl">Enquiry👀??  📞19124133</h3></div>
+      <Footer/>
     </div>
   );
 };
