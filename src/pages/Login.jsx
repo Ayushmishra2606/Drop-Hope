@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const {
@@ -14,7 +15,8 @@ const Login = () => {
 
   const donor = useRef();
   const beneficiary = useRef();
-  const [type, settype] = useState("individual");
+  const navigate = useNavigate();
+  const [type, settype] = useState("user");
 
   const forBENE = () => {
     beneficiary.current.style.backgroundColor = "#2563EB";
@@ -24,27 +26,28 @@ const Login = () => {
   const forDon = () => {
     donor.current.style.backgroundColor = "#2563EB";
     beneficiary.current.style.backgroundColor = "white";
-    settype("individual");
+    settype("user");
   };
 
   const delay = (d) => {
     return new Promise((res, rej) => {
       setTimeout(() => {
         res();
-      }, d * 1000);
+      }, d * 500);
     });
   };
 
   const onSubmit = async (data) => {
-    await delay(2);
+    await delay(1);
     console.log(data);
+    navigate(`/${type}`)
   };
 
   return (
     <>
     <Navbar/>
-      <div className="flex flex-col items-center h-[43vh] sm:h-[51vh] w-3/4 mx-auto my-[16vh]  border-white shadow-lg lg:h-[68vh]">
-        <div className="flex flex-row h-[8vw] w-full m-0 rounded-md ">
+      <div className="flex flex-col items-center h-[43vh] sm:h-[51vh] w-[60vw] mx-auto my-[16vh]  border-white shadow-lg lg:h-[68vh]">
+        <div className="flex flex-row h-[8vh] w-full m-0 rounded-md ">
           <span
             ref={donor}
             onClick={forDon}
