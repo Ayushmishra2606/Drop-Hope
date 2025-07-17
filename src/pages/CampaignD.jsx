@@ -2,12 +2,21 @@ import React from "react";
 import pic from "../assets/boypic.png";
 import NavbarUser from "../components/NavbarUser";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router";
 
 const CampaignD = () => {
+
+    const navigate = useNavigate()
+
+    const donation =()=>{
+        navigate('/user')
+    }
+
   return (
     <>
+    <NavbarUser />
       <div className="w-screen h-screen m-0 p-0">
-        <NavbarUser />
+        
         <div className="w-[75%] h-[80%] shadow-2xl mx-auto mt-9 flex lg:flex-row flex-col lg:gap-5 gap-3 max-lg:justify-center max-lg:items-center">
           <div className="w-2/5 lg:h-full h-2/5">
             <img
@@ -36,7 +45,7 @@ const CampaignD = () => {
               makes a big difference. Thank you for your kindness and for
               standing by a dream that could change many lives
             </p>
-            <button className="h-[40px] w-[130px] bg-[#22C55E] rounded-md mt-6 text-[#d1dcef] hover:bg-[#90feb8] ">
+            <button className="h-[40px] w-[130px] bg-[#22C55E] rounded-md mt-6 text-[#d1dcef] hover:bg-[#90feb8] " onClick={donation}>
               Donate Now
             </button>
           </div>

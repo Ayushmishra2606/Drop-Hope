@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import NavbarUser from "../components/NavbarUser";
 import Footer from "../components/Footer";
+import NavbarNgo from "../components/NavbarNgo";
 const NGOdashboard=()=>{ 
     const navLinks = [
     { name: "Home", path: "/" },
@@ -12,7 +12,7 @@ const NGOdashboard=()=>{
         <div className="flex flex-col">
             <div className="p-2"></div>
             {/* Navbar */}
-            <NavbarUser/>
+            <NavbarNgo/>
             {/* Main */}
             <div className="bg-white h-screen ">
                 <div className="px-4 py-4 font-bold text-2xl   flex flex-col justify-center  items-center">
