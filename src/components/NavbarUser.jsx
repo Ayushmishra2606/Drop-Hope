@@ -1,22 +1,35 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 const NavbarUser = () =>{
+
     const navLinks = [
-        { name: "Home", path: "/" },
+        { name: "Home", path: "/user" },
         { name: "Profile", path: "/profile" },
         { name: "Campaigns", path: "/campaign" },
-        { name: "Request Help", path:"/"}, 
+        { name: "Request Help", path:"#"}, 
     ];
+
+    const navigate = useNavigate();
+
+  const logout = () => {
+    const confirmed = window.confirm("Are you sure you want to logout?");
+    if (confirmed) {
+      navigate('/'); 
+    }
+  };
+
     return (
         <div className=" bg-[#2563EB] text-3xl  px-10 py-3 text-white flex justify-between rounded-xl w-[90%] mx-auto">
                 <Link to="/">
                     <h1 className="text-white font-bold">Drop<span className="text-[#1E293B]">Hope</span></h1>
                 </Link>
                 <div className="">
-                    <ul className="flex gap-4 text-xl">
+                    <ul className="flex gap-4 text-[15px] md:text-xl">
                         {navLinks.map(link => (
                             <li key={link.name}>
-                                <Link to={link.path} className="hover:underline">
+                                <Link to={link.path} className="hover:text-[#bbf4f9b6]">
                                     {link.name}
                                 </Link>
                             </li>
@@ -27,7 +40,8 @@ const NavbarUser = () =>{
                 <div>
                     <ul className="text-xl">
                         <li>
-                            <button className="hover:underline">Logout</button>
+
+                            <button className="hover:text-[#bbf4f9b6]" onClick={logout}>Logout</button>
                         </li>
                     </ul>
                 </div>
