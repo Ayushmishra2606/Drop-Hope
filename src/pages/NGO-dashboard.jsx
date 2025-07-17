@@ -9,6 +9,7 @@ const NGOdashboard=()=>{
   ];
     return(
         <div className="flex flex-col">
+            <div className="p-2"></div>
             {/* Navbar */}
             <NavbarUser/>
             {/* Main */}
