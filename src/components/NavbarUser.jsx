@@ -15,13 +15,13 @@ const NavbarUser = () =>{
                     <ul className="flex gap-4 text-xl">
                         {navLinks.map(link => (
                             <li key={link.name}>
-                                <Link to={link.path} className="hover:underline">
+                                <Link to={link.path} className="hover:text-[#bbf4f9b6]">
                                     {link.name}
                                 </Link>
                             </li>
                         ))}
                         <li>
-                            <button className="hover:underline">Logout</button>
+                            <button className="hover:text-[#bbf4f9b6]">Logout</button>
                         </li>
                     </ul>
                 </div>
