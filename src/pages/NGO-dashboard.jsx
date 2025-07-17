@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavbarUser from "../components/NavbarUser";
+import Footer from "../components/Footer";
 const NGOdashboard=()=>{ 
     const navLinks = [
     { name: "Home", path: "/" },
@@ -58,6 +59,7 @@ const NGOdashboard=()=>{
                 </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

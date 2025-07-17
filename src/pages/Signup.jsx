@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
   const {
@@ -24,6 +25,7 @@ const Signup = () => {
     "Poverty Alleviation",
     "Others",
   ];
+  const navigate = useNavigate();
 
   const delay = (d) => {
     return new Promise((res, rej) => {
@@ -36,6 +38,7 @@ const Signup = () => {
   const onSubmit = async (data) => {
     await delay(2);
     console.log(data);
+    navigate('/login')
   };
 
   return (
@@ -331,7 +334,7 @@ const Signup = () => {
               className="mt-6 h-9 w-18 rounded-md bg-[#9ab7f6] text-white cursor-pointer hover:bg-[#2563EB]"
             />
             <a
-              href="/register"
+              href="/login"
               className="text-blue-600 underline hover:text-blue-800 text-center"
             >
               already have a account?
