@@ -5,12 +5,11 @@ import Home from "./pages/Home";
 // import Userdashboard from "./pages/User-dashboard";
 import NGOdashboard from "./pages/NGO-dashboard";
 import './App.css'
-import Login from './pages/Login'
-import Signup from "./pages/Signup";
+
 
 function App() {
   return (
-    <> 
+    <>
     </>
   );
 }
