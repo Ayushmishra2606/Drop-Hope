@@ -5,9 +5,10 @@ const NavbarUser = () =>{
         { name: "Home", path: "/" },
         { name: "Profile", path: "/profile" },
         { name: "Campaigns", path: "/campaign" },
+        { name: "Request Help", path:"/"}, 
     ];
     return (
-        <div className="h-[200px] flex-1 bg-[#2563EB] text-3xl  px-10 py-3 text-white flex justify-between">
+        <div className=" bg-[#2563EB] text-3xl  px-10 py-3 text-white flex justify-between rounded-xl w-[90%] mx-auto">
                 <Link to="/">
                     <h1 className="text-white font-bold">Drop<span className="text-[#1E293B]">Hope</span></h1>
                 </Link>
@@ -20,6 +21,11 @@ const NavbarUser = () =>{
                                 </Link>
                             </li>
                         ))}
+                        
+                    </ul>
+                </div>
+                <div>
+                    <ul className="text-xl">
                         <li>
                             <button className="hover:text-[#bbf4f9b6]">Logout</button>
                         </li>
