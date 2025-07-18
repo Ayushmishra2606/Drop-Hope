@@ -11,7 +11,11 @@ const Userdashboard=()=>{
     }
 
     const donate = ()=>{
-        navigate('donate')
+        navigate('/user/donate')
+    }
+
+    const help = () =>{
+        navigate('/user/help')
     }
 
     return (
@@ -38,7 +42,7 @@ const Userdashboard=()=>{
             </div>
             
             <div className="flex  justify-center-safe gap-14 mt-5 text-white">
-                <button className="text-2xl bg-[#2563EB] rounded-2xl px-8 py-4  ">
+                <button className="text-2xl bg-[#2563EB] rounded-2xl px-8 py-4  hover:bg-[rgb(135,169,242)]" onClick={help}>
                     🤝 Request Help    
                 </button>
                 <button className="text-2xl bg-[#F97316] rounded-2xl px-8 py-4 hover:bg-[#ff9c56] " onClick={donate}>
