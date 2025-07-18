@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router';
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState({
-    name: 'Critical',
-    email: 'Critical@gmail.com',
+    name: 'kautuk',
+    email: 'Kautuk@gmail.com',
     dob: '2001-01-01',
     gender: '',
     PhoneNo: '',
