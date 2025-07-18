@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 const NavbarNgo = () => {
  const navLinks = [
         { name: "Home", path: "/ngo" },
-        { name: "Profile", path: "profile" },
+        { name: "Profile", path: "/ngo/profile" },
         { name: "My Campaigns", path: "#" },
     ];
 

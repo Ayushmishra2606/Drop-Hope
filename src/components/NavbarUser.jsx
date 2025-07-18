@@ -6,9 +6,9 @@ const NavbarUser = () =>{
 
     const navLinks = [
         { name: "Home", path: "/user" },
-        { name: "Profile", path: "profile" },
-        { name: "Campaigns", path: "/#" },
-        { name: "Request Help", path:"#"}, 
+        { name: "Profile", path: "/user/profile" },
+        { name: "Campaigns", path: "#" },
+        { name: "Request Help", path:"/user/help"}, 
     ];
 
     const navigate = useNavigate();

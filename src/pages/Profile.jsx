@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
 import NavbarUser from '../components/NavbarUser';
+import { useNavigate } from 'react-router';
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState({
@@ -32,9 +32,13 @@ const ProfilePage = () => {
     console.log('Profile data:', profile);
   };
 
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    console.log('User logged out');
-    alert('Logged out successfully!');
+    const confirmed = window.confirm("Are you sure you want to logout?");
+    if (confirmed) {
+      navigate('/'); 
+    }
   };
 
   return (
