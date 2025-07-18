@@ -1,10 +1,12 @@
 import Footer from '../components/Footer';
 import NavbarNgo from '../components/NavbarNgo'
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+
 const ProfileNGO = () =>{
     const [profile, setProfile] = useState({
-        name: 'Critical',
-        email: 'Critical@gmail.com',
+        name: 'My Ngo',
+        email: 'MyNgo@gmail.com',
         dateOfEst: '    ',
         registrationnumber: '',
         type: '',
@@ -29,20 +31,25 @@ const ProfileNGO = () =>{
         console.log('Profile data:', profile);
     };
 
-    const handleLogout = () => {
-        console.log('User logged out');
-        alert('Logged out successfully!');
-    };
+    const navigate = useNavigate();
+    
+      const handleLogout = () => {
+        const confirmed = window.confirm("Are you sure you want to logout?");
+        if (confirmed) {
+          navigate('/'); 
+        }
+      };
+      
     return(
         <>
             <div className='h-[20px]'></div>
             <NavbarNgo/>
             <div className="max-w-2xl mx-auto px-4 py-5 lg:col-span-2 bg-white p-8 rounded shadow mb-10 mt-5">
-{/*       
+      
             <div className="text-4xl font-bold text-center mb-2 text-blue-600">
                 Drop Hope
 
-            </div> */}
+            </div>
 
             <div className="block text-sm font-medium mb-1">
                 <h3 className="block text-sm font-medium mb-1 text-blue-600">Full Name</h3>

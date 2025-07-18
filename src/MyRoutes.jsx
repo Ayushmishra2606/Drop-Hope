@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
 import ProfilePage from "./pages/Profile";
 import RequestHelpForm from "./pages/Help";
+import ProfileNGO from "./pages/Profilengo";
 
 
 const Ngo = lazy(() => import("./pages/NGO-dashboard"));
@@ -26,7 +27,7 @@ const MyRoutes = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path='/user/profile' element={<ProfilePage/>}/>
-      <Route path='/ngo/profile' element={<ProfilePage/>}/>
+      <Route path='/ngo/profile' element={<ProfileNGO/>}/>
       <Route path='/user/help' element={<RequestHelpForm/>}/>
 
       <Route
