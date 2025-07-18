@@ -7,12 +7,15 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
-import CampaignD from "./pages/CampaignD";
-import Donate from "./pages/Donate";
 import ProfilePage from "./pages/Profile";
+import RequestHelpForm from "./pages/Help";
+
 
 const Ngo = lazy(() => import("./pages/NGO-dashboard"));
 const User = lazy(() => import("./pages/User-dashboard"));
+const Newcampaign = lazy(() => import("./pages/Newcampaign"));
+const CampaignD = lazy(() => import("./pages/CampaignD"));
+const Donate = lazy(() => import("./pages/Donate"));
 
 const MyRoutes = () => {
   return (
@@ -23,6 +26,8 @@ const MyRoutes = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path='/user/profile' element={<ProfilePage/>}/>
+      <Route path='/ngo/profile' element={<ProfilePage/>}/>
+      <Route path='/user/help' element={<RequestHelpForm/>}/>
 
       <Route
         path="/ngo"
@@ -59,6 +64,14 @@ const MyRoutes = () => {
           element={
             <Suspense fallback={<div className="text-center">Loading...</div>}>
               <Donate />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/ngo/newcampaign"
+          element={
+            <Suspense fallback={<div className="text-center">Loading...</div>}>
+              <Newcampaign />
             </Suspense>
           }
         />

@@ -19,7 +19,7 @@ const Home = () => {
           <Link to="/register" className="bg-[#22C55E] text-white px-6 py-3 rounded hover:bg-green-700 transition font-semibold">
             I’m an Individual
           </Link>
-          <Link to="/ngo-register" className="bg-[#2563EB] text-white px-6 py-3 rounded hover:bg-[#1E40AF] transition font-semibold">
+          <Link to="/register" className="bg-[#2563EB] text-white px-6 py-3 rounded hover:bg-[#1E40AF] transition font-semibold">
             We’re an NGO
           </Link>
         </div>
