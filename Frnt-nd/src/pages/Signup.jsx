@@ -5,10 +5,8 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import axios from "axios";
 
-
 const Signup = () => {
-
-  const [formData,setformData] = useState({});
+  const [formData, setformData] = useState({});
 
   const {
     register,
@@ -36,12 +34,31 @@ const Signup = () => {
     "Others",
   ];
 
-
   const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
-    console.log("Form Data:", data);
-    navigate('/login')
+  const onSubmit = async (e) => {
+    if (role === "ngo") {
+      try {
+        await axios.post("http://localhost:3000/ngo/register", formData);
+
+        alert("Registration Successful");
+
+        navigate("/login");
+      } catch (error) {
+        alert("Registration Failed :" + error.response.data.message);
+      }
+      
+    }else{
+      try {
+        await axios.post("http://localhost:3000/user/register", formData);
+
+        alert("Registration Successful");
+
+        navigate("/login");
+      } catch (error) {
+        alert("Registration Failed : " + error.response.data.message);
+      }
+    }
   };
 
   return (
@@ -118,7 +135,7 @@ const Signup = () => {
                   value: /[A-Za-z0-9]{4,15}$/,
                   message: "Only Use Alphabets and Digits",
                 },
-                onChange:handleChange,
+                onChange: handleChange,
               })}
               className="w-3/4 h-9 focus:outline-none rounded-md placeholder:p-4 bg-[#b7caf18f] p-3"
             />
@@ -131,27 +148,25 @@ const Signup = () => {
             <input
               type="password"
               maxLength={17}
-              minLength={7}
-              {...register(
-                "password",
-                {
-                  pattern: {
-                    value: /[A-Za-z0-9!@#$%^&*()_+={}\[\]:;"'<>?,./~`-]{7,17}$/,
-                    message: "Invalid Format",
-                  },
-                },
-                {
-                  required: {
-                    value: true,
-                    message: "please Enter the password",
-                  },
-                },
-                { minLength: { value: 7, message: "Minimum Seven character" } ,
-                onChange:handleChange,
-            })}
               placeholder="Password"
-              className=" w-3/4 h-9 focus:outline-none rounded-md placeholder:p-4 bg-[#b7caf18f] p-3"
+              className="w-3/4 h-9 focus:outline-none rounded-md placeholder:p-4 bg-[#b7caf18f] p-3"
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "Please enter the password",
+                },
+                pattern: {
+                  value: /[A-Za-z0-9!@#$%^&*()_+={}\[\]:;"'<>?,./~`-]{7,17}$/,
+                  message: "Invalid Format",
+                },
+                minLength: {
+                  value: 7,
+                  message: "Minimum seven characters required",
+                },
+                onChange: handleChange,
+              })}
             />
+
             {errors.password && (
               <p className="text-red-500 text-sm">{errors.password.message}</p>
             )}
@@ -184,7 +199,7 @@ const Signup = () => {
                   value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
                   message: "Invalid email address",
                 },
-                onChange:handleChange,
+                onChange: handleChange,
               })}
               placeholder="email"
               className="w-3/4 h-9 focus:outline-none rounded-md placeholder:p-4 bg-[#b7caf18f] p-3"
@@ -203,7 +218,10 @@ const Signup = () => {
               <input
                 type="radio"
                 value="ngo"
-                {...register("role", { required: "Please select a role" , onChange:handleChange })}
+                {...register("role", {
+                  required: "Please select a role",
+                  onChange: handleChange,
+                })}
               />
               <label htmlFor="individual" className="mx-3">
                 Individual
@@ -211,7 +229,10 @@ const Signup = () => {
               <input
                 type="radio"
                 value="individual"
-                {...register("role", { required: "Please select a role", onChange:handleChange })}
+                {...register("role", {
+                  required: "Please select a role",
+                  onChange: handleChange,
+                })}
               />
               {errors.role && (
                 <p className="text-red-500 text-sm">{errors.role.message}</p>
@@ -223,7 +244,10 @@ const Signup = () => {
                 <input
                   type="text"
                   placeholder="NGO Name"
-                  {...register("ngoName", { required: "NGO Name is required" , onChange:handleChange })}
+                  {...register("ngoName", {
+                    required: "NGO Name is required",
+                    onChange: handleChange,
+                  })}
                   className="w-3/4 h-9 focus:outline-none rounded-md placeholder:p-4 bg-[#b7caf18f] p-3"
                 />
                 {errors.ngoName && (
@@ -260,13 +284,14 @@ const Signup = () => {
                 <input
                   type="text"
                   id="city"
-                  placeholder="Enter your city"
+                  placeholder="Enter the city you are based"
                   {...register("city", {
                     required: "City is required",
                     pattern: {
-                      value: /^[a-zA-Z\s]{2,30}$/, 
+                      value: /^[a-zA-Z\s]{2,30}$/,
                       message: "Enter a valid city name (letters only)",
-                    }, onChange: handleChange,
+                    },
+                    onChange: handleChange,
                   })}
                   className="w-2/4 h-9 focus:outline-none rounded-md  bg-[#b7caf18f] p-1 mt-5"
                 />
@@ -279,7 +304,8 @@ const Signup = () => {
                 <select
                   id="Area"
                   {...register("area", {
-                    required: "Please select Your Operating Region", onChange: handleChange,
+                    required: "Please select Your Operating Region",
+                    onChange: handleChange,
                   })}
                   className="w-2/4 h-9 focus:outline-none rounded-md  bg-[#b7caf18f] p-1"
                   defaultValue=""
@@ -292,9 +318,7 @@ const Signup = () => {
                   <option value="National">National</option>
                 </select>
                 {errors.Area && (
-                  <p className="text-red-500 text-sm">
-                    {errors.Area.message}
-                  </p>
+                  <p className="text-red-500 text-sm">{errors.Area.message}</p>
                 )}
               </div>
             )}
@@ -305,7 +329,8 @@ const Signup = () => {
                   type="text"
                   placeholder="Full Name"
                   {...register("fullName", {
-                    required: "Full Name is required", onChange: handleChange,
+                    required: "Full Name is required",
+                    onChange: handleChange,
                   })}
                   className="w-3/4 h-9 focus:outline-none rounded-md placeholder:p-4 bg-[#b7caf18f] p-3 mt-4"
                 />
@@ -323,7 +348,8 @@ const Signup = () => {
                     pattern: {
                       value: /^[a-zA-Z\s]{2,30}$/, // only letters & spaces, 2–30 characters
                       message: "Enter a valid city name (letters only)",
-                    }, onChange: handleChange,
+                    },
+                    onChange: handleChange,
                   })}
                   className="w-2/4 h-9 focus:outline-none rounded-md  bg-[#b7caf18f] p-1 mt-5"
                 />
@@ -333,18 +359,19 @@ const Signup = () => {
               </div>
             )}
             <div className="flex flex-row gap-4  items-center">
-            <input
-              type="submit"
-              disabled={isSubmitting}
-              value="Sign Up"
-              className="mt-6 h-9 w-18 rounded-md bg-[#9ab7f6] text-white cursor-pointer hover:bg-[#2563EB]"
-            />
-            <a
-              href="/login"
-              className="text-blue-600 underline hover:text-blue-800 text-center"
-            >
-              already have a account?
-            </a></div>
+              <input
+                type="submit"
+                disabled={isSubmitting}
+                value="Sign Up"
+                className="mt-6 h-9 w-18 rounded-md bg-[#9ab7f6] text-white cursor-pointer hover:bg-[#2563EB]"
+              />
+              <a
+                href="/login"
+                className="text-blue-600 underline hover:text-blue-800 text-center"
+              >
+                already have a account?
+              </a>
+            </div>
           </form>
         </div>
       </div>
