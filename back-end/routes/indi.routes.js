@@ -1,8 +1,10 @@
 import express from "express";
 import individual from "../models/indi.models.js";
 import { body, validationResult } from "express-validator";
+import Help from "../models/help.module.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import auth from "../middleware/auth.js";
 
 
 const Indrouter = express.Router();
@@ -91,6 +93,26 @@ Indrouter.post("/login", async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: "Login Failed" });
+  }
+});
+
+Indrouter.post("/help", auth, async (req, res) => {
+  const { name,  city, context , helpType , urgency } = req.body;
+  
+  try {
+    const newHelp = await Help.create({
+      name,
+      city,
+      context,
+      helpType,
+      urgency,
+      user_id: req.user.id
+    });
+
+    res.status(201).json({ message: "You Have Been Heard" });
+
+  } catch (error) {
+    res.status(500).json({ message: "Your Request Have Not Been Registerd , Try again " });
   }
 });
 
