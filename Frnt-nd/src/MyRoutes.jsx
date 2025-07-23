@@ -10,7 +10,6 @@ import ProfilePage from "./pages/Profile";
 import RequestHelpForm from "./pages/Help";
 import ProfileNGO from "./pages/Profilengo";
 
-
 const Ngo = lazy(() => import("./pages/NGO-dashboard"));
 const User = lazy(() => import("./pages/User-dashboard"));
 const Newcampaign = lazy(() => import("./pages/Newcampaign"));
@@ -20,6 +19,8 @@ const Campaign = lazy(()=> import('./pages/Campaigns'))
 
 import ProtectedRoute from "./components/ProtectedRoutes"; 
 
+
+import ProtectedRoute from "./components/ProtectedRoutes"; 
 
 const MyRoutes = () => {
   return (
