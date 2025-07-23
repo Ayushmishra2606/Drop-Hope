@@ -3,13 +3,12 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom"; 
 
 const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm();
 
@@ -29,23 +28,39 @@ const Login = () => {
     settype("user");
   };
 
-  const delay = (d) => {
-    return new Promise((res, rej) => {
-      setTimeout(() => {
-        res();
-      }, d * 500);
-    });
-  };
-
   const onSubmit = async (data) => {
-    await delay(1);
-    console.log(data);
-    navigate(`/${type}`)
+    try {
+      const endpoint = type === "ngo" ? "http://localhost:3000/ngo/login" : "http://localhost:3000/user/login"; // Ensure port 5000
+      const response = await fetch(endpoint, {
+        method: "POST",
+        credentials: "include", 
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        
+
+        if (type === "ngo") {
+          navigate("/ngo");
+        } else {
+          navigate("/user");
+        }
+      } else {
+        const error = await response.json();
+        alert(error.message || "Login Failed");
+      }
+    } catch (error) {
+      console.error("Login request failed:", error);
+      alert("Login Failed due to network or server error.");
+    }
   };
 
   return (
     <>
-    <Navbar/>
+      <Navbar/>
       <div className="flex flex-col items-center h-[43vh] sm:h-[51vh] w-[60vw] mx-auto my-[16vh]  border-white shadow-lg lg:h-[68vh]">
         <div className="flex flex-row h-[8vh] w-full m-0 rounded-md ">
           <span

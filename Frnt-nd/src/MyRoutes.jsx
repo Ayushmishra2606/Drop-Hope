@@ -1,5 +1,4 @@
-import React from "react";
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -11,12 +10,13 @@ import ProfilePage from "./pages/Profile";
 import RequestHelpForm from "./pages/Help";
 import ProfileNGO from "./pages/Profilengo";
 
-
 const Ngo = lazy(() => import("./pages/NGO-dashboard"));
 const User = lazy(() => import("./pages/User-dashboard"));
 const Newcampaign = lazy(() => import("./pages/Newcampaign"));
 const CampaignD = lazy(() => import("./pages/CampaignD"));
 const Donate = lazy(() => import("./pages/Donate"));
+
+import ProtectedRoute from "./components/ProtectedRoutes"; 
 
 const MyRoutes = () => {
   return (
@@ -26,56 +26,69 @@ const MyRoutes = () => {
       <Route path="/register" element={<Signup />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<AboutUs />} />
-      <Route path='/user/profile' element={<ProfilePage/>}/>
-      <Route path='/ngo/profile' element={<ProfileNGO/>}/>
-      <Route path='/user/help' element={<RequestHelpForm/>}/>
+      
+      <Route path="/user/profile" element={<ProfilePage />} />
+      <Route path="/ngo/profile" element={<ProfileNGO />} />
+      <Route path="/user/help" element={<RequestHelpForm />} />
 
       <Route
         path="/ngo"
         element={
-          <Suspense
-            fallback={<div className="text-center">Loading NGO...</div>}
-          >
-            <Ngo />
-          </Suspense>
+          <ProtectedRoute allowedRoles={["ngo"]}> {/* Pass allowedRoles */}
+            <Suspense
+              fallback={<div className="text-center">Loading NGO...</div>}
+            >
+              <Ngo />
+            </Suspense>
+          </ProtectedRoute>
         }
-      ></Route>
+      />
+
       <Route
         path="/user"
         element={
-          <Suspense
-            fallback={<div className="text-center">Loading User...</div>}
-          >
-            <User />
-          </Suspense>
+          <ProtectedRoute allowedRoles={["individual"]}> 
+            <Suspense
+              fallback={<div className="text-center">Loading User...</div>}
+            >
+              <User />
+            </Suspense>
+          </ProtectedRoute>
         }
-      ></Route>
+      />
+      
       <Route
-          path="user/campaign/detail"
-          element={
+        path="user/campaign/detail"
+        element={
+          <ProtectedRoute allowedRoles={["user"]}>
             <Suspense
               fallback={<div className="text-center">Loading Detail...</div>}
             >
-              <CampaignD/>
+              <CampaignD />
             </Suspense>
-          }
-        />
-        <Route
-          path="/user/donate"
-          element={
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/user/donate"
+        element={
+          <ProtectedRoute allowedRoles={["user"]}>
             <Suspense fallback={<div className="text-center">Loading...</div>}>
               <Donate />
             </Suspense>
-          }
-        />
-        <Route
-          path="/ngo/newcampaign"
-          element={
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/ngo/newcampaign"
+        element={
+          <ProtectedRoute allowedRoles={["ngo"]}>
             <Suspense fallback={<div className="text-center">Loading...</div>}>
               <Newcampaign />
             </Suspense>
-          }
-        />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 };
