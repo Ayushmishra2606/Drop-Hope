@@ -15,10 +15,23 @@ const app = express();
 dotenv.config();
 connectDB();
 
+const allowedOrigins = [
+  'https://drop-hope-frontend.vercel.app',
+  'https://drop-hope-frontend-9artlzlqn-kautuks-projects.vercel.app',
+  'http://localhost:5173' // optional: for local testing
+];
+
 app.use(cors({
-  origin: "https://drop-hope-frontend.vercel.app",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); 
