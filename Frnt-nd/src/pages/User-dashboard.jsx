@@ -2,42 +2,48 @@ import Footer from "../components/Footer";
 import NavbarUser from "../components/NavbarUser";
 import { useNavigate } from "react-router";
 import React, { useEffect, useState } from "react";
-import axios from 'axios'
+import axios from 'axios';
 
-const Userdashboard=()=>{
+const Userdashboard = () => {
+  const [username, setUsername] = useState("Guest");
+  const [campaigns, setCampaigns] = useState([]);
 
-    const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
-
-    useEffect(() => {
+  useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/info", { withCredentials: true }); 
+        const response = await axios.get("http://localhost:3000/info", { withCredentials: true });
         setUsername(response.data.username);
       } catch (error) {
         console.error("Error fetching user info:", error);
-        setUsername("Guest");
+      }
+    };
+
+    const fetchCampaigns = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/campaigns",
+          { limit: 10 },
+          { withCredentials: true }
+        );
+        setCampaigns(response.data);
+      } catch (err) {
+        console.error("Error fetching campaigns:", err);
       }
     };
 
     fetchUserInfo();
+    fetchCampaigns();
   }, []);
 
-    const detail = ()=>{
-        navigate('campaign/detail')
-    }
+  const detail = (id) => {
+    navigate(`/campaign/detail/${id}`);
+  };
 
-    const donate = ()=>{
-        navigate('/user/donate')
-    }
-
-    const help = () =>{
-        navigate('/user/help')
-    }
-    const campaign = () =>{
-        navigate('/newcampaign')
-    }
+  const donate = () => navigate('/user/donate');
+  const help = () => navigate('/user/help');
+  const campaign = () => navigate('/newcampaign');
 
     return (
         <div className="bg-neutral-100 h-screen">
@@ -49,15 +55,15 @@ const Userdashboard=()=>{
             
             <div className="flex gap-4 justify-around mt-5">
                 <div className="w-[30%] h-[100px] bg-white rounded-xl border-b-neutral-500 shadow-2xl flex items-center flex-col justify-center">
-                    <p className="text-3xl font-semibold"></p> 
+                    <p className="text-3xl font-semibold">❤️ ₹4,500</p> 
                     <p className="font-semibold font-sans text-[#64748B]">Total Donations Made</p>
                 </div>
                 <div className="w-[30%] h-[100px] bg-white rounded-xl border-b-neutral-500 shadow-2xl flex items-center flex-col justify-center">
-                    <p className="text-3xl font-semibold"></p> 
+                    <p className="text-3xl font-semibold">🎁 12</p> 
                     <p className="font-semibold font-sans text-[#64748B]">Total Items Donated</p>
                 </div>
                 <div className="w-[30%] h-[100px] bg-white rounded-xl border-b-neutral-500 shadow-2xl flex items-center flex-col justify-center">
-                    <p className="text-3xl font-semibold"></p> 
+                    <p className="text-3xl font-semibold">⏳ 3</p> 
                     <p className="font-semibold font-sans text-[#64748B]">Requests Received Help</p>
                 </div>
             </div>
@@ -129,9 +135,15 @@ const Userdashboard=()=>{
                         </div>
                     </div>
                 </div>
-            </div>
-            <Footer/>
+              ))
+            )}
+          </div>
         </div>
-    )
-}
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
 export default Userdashboard;

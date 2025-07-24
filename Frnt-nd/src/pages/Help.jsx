@@ -32,6 +32,7 @@ export default function RequestHelpForm() {
 
   return (
     <>
+      <div className="h-[20px]"></div>
       <NavbarUser />
       <div className="min-h-screen bg-white flex items-center justify-center px-4 py-10">
         <div className="w-full max-w-2xl bg-white p-8 shadow-lg rounded-lg">
