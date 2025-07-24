@@ -26,7 +26,7 @@ const helpSchema = new mongoose.Schema({
     trim: true,
   },
   user_id: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
     trim: true,
   },
