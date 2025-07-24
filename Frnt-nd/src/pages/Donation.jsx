@@ -47,19 +47,19 @@ const Donation = () => {
                 className="bg-white shadow-md rounded-xl p-5 w-full max-w-xs hover:shadow-xl hover:scale-105 transform transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  {/* NAME */}
+                  
                   <h2 className="text-xl font-semibold text-gray-800 mb-1 uppercase">
                     {user.name}
                   </h2>
 
-                  {/* DESCRIPTION */}
+                  
                   {user.context && (
                     <p className="text-gray-600 text-sm mb-2 line-clamp-3">
                       {user.context}
                     </p>
                   )}
 
-                  {/* CITY, HELP TYPE, URGENCY */}
+                  
                   <p className="text-gray-600 mb-1">City: {user.city}</p>
                   <p className="text-gray-600 mb-1">Need: <span className="font-medium">{user.helpType}</span></p>
                   <p className="text-gray-600 mb-1">
@@ -74,7 +74,6 @@ const Donation = () => {
                   </p>
                 </div>
 
-                {/* BUTTON */}
                 <button
                   className="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-amber-600 transition uppercase font-medium"
                   onClick={() => console.log("Clicked:", user.name)}

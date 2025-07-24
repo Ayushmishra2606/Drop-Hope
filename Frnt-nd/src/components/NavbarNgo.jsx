@@ -6,7 +6,6 @@ const NavbarNgo = () => {
  const navLinks = [
         { name: "Home", path: "/ngo" },
         { name: "Profile", path: "/ngo/profile" },
-        { name: "My Campaigns", path: "#" },
     ];
 
     const navigate = useNavigate();
