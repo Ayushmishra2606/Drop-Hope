@@ -1,10 +1,28 @@
 import Footer from "../components/Footer";
 import NavbarUser from "../components/NavbarUser";
 import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
 
 const Userdashboard=()=>{
 
+    const [username, setUsername] = useState("");
+
     const navigate = useNavigate()
+
+    useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/info", { withCredentials: true }); 
+        setUsername(response.data.username);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+        setUsername("Guest");
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
     const detail = ()=>{
         navigate('campaign/detail')
@@ -23,7 +41,7 @@ const Userdashboard=()=>{
             <div className="p-2"></div>
             <NavbarUser/>
             <div className="text-2xl italic mt-5 mx-25 w-[15%] font-bold">
-                Hello, Aman 👋
+                Hello, {username} 👋
             </div>
             
             <div className="flex gap-4 justify-around mt-5">
@@ -60,30 +78,30 @@ const Userdashboard=()=>{
                     <div>
                         <div className="px-4 py-2 space-y-4">
                             <div className="flex flex-col">
-                                <span>🧤 You donated 3 Winter Jackets</span>
-                                <span className="text-sm text-gray-500">📍 Noida — 📅 July 8, 2025</span>
+                                <span>No Donation Found</span>
+                                <span className="text-sm text-gray-500"></span>
                             </div>
                             
                             <div className="flex flex-col">
-                                <span>🍲 You donated 10 Food Packets</span>
-                                <span className="text-sm text-gray-500">📍 Lucknow — 📅 July 16, 2025</span>
+                                <span></span>
+                                <span className="text-sm text-gray-500"></span>
                             </div>
                             
                             <div className="flex flex-col">
-                                <span>📱 You donated 1 Smartphone (Used)</span>
-                                <span className="text-sm text-gray-500">📍 Bhopal — 📅 June 15, 2025</span>
+                                <span></span>
+                                <span className="text-sm text-gray-500"></span>
                             </div>
                             
                             <div className="flex flex-col">
-                                <span>💰 You donated ₹500</span>
-                                <span className="text-sm text-gray-500">📍 Delhi — 📅 July 10, 2025</span>
+                                <span></span>
+                                <span className="text-sm text-gray-500"></span>
                             </div>
                         </div>
                     </div>
                 </div>  
                 
                 <div className=" bg-white  border-white shadow-2xl rounded-xl p-6 mb-4">
-                    <h1 className="font-bold px-4 py-4">Campaigns You May Like</h1>
+                    <h1 className="font-bold px-4 py-4"></h1>
                     <div className="flex flex-wrap gap-x-6 gap-y-6">
                         <div className="flex flex-col bg-blue-50 ml-3 rounded px-2 py-4 w-[270px] h-[340px] justify-between shadow-md hover:shadow-2xl transition duration-300    ">
                             <span className="font-bold text-xl mb-2">Feed the Hungry - Delhi</span>

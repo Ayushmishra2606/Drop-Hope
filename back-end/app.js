@@ -7,6 +7,8 @@ import cmpRouter from "./routes/campaign.route.js";
 import auth from "./middleware/auth.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import infoRouter from "./routes/info.routes.js";
+import apiRouter from "./routes/api.routes.js";
 
 const app = express();
 
@@ -27,6 +29,8 @@ const PORT = process.env.PORT
 app.use('/ngo' , NGOrouter)
 app.use('/user', Indrouter)
 app.use('/campaign',cmpRouter)
+app.use('/info', infoRouter)
+app.use('/api', apiRouter)
 
 app.get("/check-auth", auth, (req, res) => {
     res.status(200).json({ message: "Authenticated", user: req.user });
