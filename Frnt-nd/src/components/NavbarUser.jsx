@@ -7,7 +7,7 @@ const NavbarUser = () =>{
     const navLinks = [
         { name: "Home", path: "/user" },
         { name: "Profile", path: "/user/profile" },
-        { name: "Campaigns", path: "#" },
+        { name: "Campaigns", path: "/user/campaigns" },
         { name: "Request Help", path:"/user/help"}, 
     ];
 
