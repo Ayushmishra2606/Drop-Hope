@@ -150,9 +150,7 @@ export default function CreateCampaignForm() {
               <input
                 type="file"
                 accept="image/*"
-                {...register("image", {
-                  required: "Campaign photo is required",
-                })}
+                {...register("image")}
                 className="w-full file:bg-[#2563EB] file:text-white file:border-0 file:px-4 file:py-2 file:rounded file:cursor-pointer border border-gray-300 rounded px-2 py-2"
               />
               {errors.image && (
