@@ -15,7 +15,7 @@ export default function RequestHelpForm() {
 
   const onSubmit = async (data) => {
     try{
-      await axios.post('http://localhost:3000/user/help' , data ,{
+      await axios.post('https://drop-hope-backend.onrender.com/user/help' , data ,{
         withCredentials:true ,
       })
       

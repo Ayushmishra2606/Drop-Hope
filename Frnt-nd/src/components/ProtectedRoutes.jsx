@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
     const checkAuth = async () => {
       try {
         
-        const response = await axios.get(`http://localhost:3000/check-auth`, { 
+        const response = await axios.get(`https://drop-hope-backend.onrender.com/check-auth`, { 
           withCredentials: true,
         });
 
