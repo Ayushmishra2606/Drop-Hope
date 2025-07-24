@@ -10,7 +10,7 @@ const Campaigns = () => {
     async function fetchUsers(limit = 10) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/campaigns",
+          "https://drop-hope-backend.onrender.com/api/campaigns",
           { limit },
           { withCredentials: true }
         );
