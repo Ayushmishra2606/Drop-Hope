@@ -15,7 +15,7 @@ const Userdashboard = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/info", {
+        const response = await axios.get("https://drop-hope-backend.onrender.com/info", {
           withCredentials: true,
         });
         setUsername(response.data.username);
@@ -30,7 +30,7 @@ const Userdashboard = () => {
   const fetchCampaigns = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/myRequests",
+          "https://drop-hope-backend.onrender.com/api/myRequests",
           {},
           { withCredentials: true }
         );
