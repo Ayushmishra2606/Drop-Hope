@@ -44,6 +44,7 @@ export default function CreateCampaignForm() {
 
   return (
     <>
+      <div className="h-[20px]"></div>
       <NavbarNgo />
       <div className="min-h-screen bg-white flex items-center justify-center px-4">
         <div className="max-w-2xl w-full bg-white p-8 rounded-lg shadow-md">
