@@ -30,7 +30,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const endpoint = type === "ngo" ? "http://localhost:3000/ngo/login" : "http://localhost:3000/user/login"; // Ensure port 5000
+      const endpoint = type === "ngo" ? "https://drop-hope-backend.onrender.com/ngo/login" : "https://drop-hope-backend.onrender.com/user/login"; // Ensure port 5000
       const response = await fetch(endpoint, {
         method: "POST",
         credentials: "include", 

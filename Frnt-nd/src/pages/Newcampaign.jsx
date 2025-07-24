@@ -23,7 +23,7 @@ export default function CreateCampaignForm() {
     data.append("image", formData.image[0]);
 
     try {
-      await axios.post("http://localhost:3000/campaign/upload",data, {
+      await axios.post("https://drop-hope-backend.onrender.com/campaign/upload",data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
