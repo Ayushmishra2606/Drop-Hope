@@ -35,6 +35,9 @@ const Userdashboard=()=>{
     const help = () =>{
         navigate('/user/help')
     }
+    const campaign = () =>{
+        navigate('/newcampaign')
+    }
 
     return (
         <div className="bg-neutral-100 h-screen">
@@ -66,8 +69,8 @@ const Userdashboard=()=>{
                 <button className="text-2xl bg-[#F97316] rounded-2xl px-8 py-4 hover:bg-[#ff9c56] " onClick={donate}>
                     Donate Now     
                 </button>
-                <button className="text-2xl bg-[#01cf75] rounded-2xl px-8 py-4 ">
-                    📣 View Campaigns    
+                <button className="text-2xl bg-[#01cf75] rounded-2xl px-8 py-4 " onClick={campaign}>
+                    Run Your Campaign  
                 </button>
             </div>
            
