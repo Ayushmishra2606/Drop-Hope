@@ -14,9 +14,10 @@ const Ngo = lazy(() => import("./pages/NGO-dashboard"));
 const User = lazy(() => import("./pages/User-dashboard"));
 const Newcampaign = lazy(() => import("./pages/Newcampaign"));
 const CampaignD = lazy(() => import("./pages/CampaignD"));
-const Donate = lazy(() => import("./pages/Donate"));
+const donations = lazy(() => import('./pages/Donation'))
 
 import ProtectedRoute from "./components/ProtectedRoutes"; 
+import Donation from "./pages/Donation";
 
 const MyRoutes = () => {
   return (
@@ -60,7 +61,7 @@ const MyRoutes = () => {
       <Route
         path="user/campaign/detail"
         element={
-          <ProtectedRoute allowedRoles={["user"]}>
+          <ProtectedRoute allowedRoles={["individual"]}>
             <Suspense
               fallback={<div className="text-center">Loading Detail...</div>}
             >
@@ -72,9 +73,9 @@ const MyRoutes = () => {
       <Route
         path="/user/donate"
         element={
-          <ProtectedRoute allowedRoles={["user"]}>
+          <ProtectedRoute allowedRoles={["individual"]}>
             <Suspense fallback={<div className="text-center">Loading...</div>}>
-              <Donate />
+              <Donation />
             </Suspense>
           </ProtectedRoute>
         }
