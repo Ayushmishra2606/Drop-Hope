@@ -7,34 +7,75 @@ const Campaigns = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Fetch users on mount
     async function fetchUsers(limit = 10) {
       try {
         const response = await axios.post(
           "http://localhost:3000/api/campaigns",
           { limit },
-          { withCredentials: true } // important for sending cookies
+          { withCredentials: true }
         );
         setUsers(response.data);
       } catch (err) {
         console.error("Error fetching users:", err);
       }
     }
+
     fetchUsers();
   }, []);
 
   return (
     <>
+      <div className="h-[20px]"></div>
       <NavbarUser />
-      <div className="w-[80vw] h-[60vh] flex flex-row gap-20">
-        {users.map((user) => (
-          <div className="card bg-amber-100 h-7 w-8" key={user._id}>
-            <h2>{user.name}</h2>
-            {/* <img src={`https://firebasestorage.googleapis.com/v0/b/ayush-901e4.firebasestorage.app/o/${user.image}
-`} alt="Image" /> */}
-            <p>{user.city}</p>
-          </div>
-        ))}
+      <div className="min-h-[70vh] px-6 py-10 bg-gray-50">
+        <h1 className="text-3xl font-bold mb-8 text-center">Active Campaigns</h1>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+          {users.map((user) => (
+            <div
+              key={user._id}
+              className="bg-white shadow-md rounded-xl p-5 w-full max-w-xs hover:shadow-xl hover:scale-105 transform transition-all duration-300 flex flex-col justify-between"
+            >
+              {/* Campaign Title */}
+              {user.title && (
+                <h2 className="text-lg font-bold text-amber-600 mb-1 text-center uppercase">
+                  {user.title}
+                </h2>
+              )}
+
+              {/* Campaign Name */}
+              <h3 className="text-md font-semibold text-gray-800 mb-2 text-center uppercase">
+                {user.name}
+              </h3>
+
+              {/* Description */}
+              {user.desc && (
+                <p className="text-gray-600 text-sm mb-2 line-clamp-3 text-center">
+                  {user.desc}
+                </p>
+              )}
+
+              {/* City */}
+              <p className="text-gray-600 mb-1 text-center">City: {user.city}</p>
+
+              {/* Target */}
+              {user.target && (
+                <p className="text-gray-700 mb-3 text-sm font-medium text-center">
+                  🎯 Target: {user.target}
+                </p>
+              )}
+
+              {/* Action Button */}
+              <button
+                className="mt-auto px-4 py-2 bg-amber-500 text-white rounded-md hover:bg-green-600 transition uppercase font-medium"
+                onClick={() => console.log("View campaign:", user.name)}
+              >
+                View Campaign
+              </button>
+            </div>
+
+          ))}
+        </div>
       </div>
       <Footer />
     </>

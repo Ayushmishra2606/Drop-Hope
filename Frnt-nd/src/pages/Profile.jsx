@@ -43,6 +43,7 @@ const ProfilePage = () => {
 
   return (
     <>
+    <div className='h-[20px]'></div>
     <NavbarUser/>
     <div className="max-w-2xl mx-auto px-4 py-5 lg:col-span-2 bg-white p-8 rounded shadow mb-10 mt-5">
       
