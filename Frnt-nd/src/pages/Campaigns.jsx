@@ -36,41 +36,41 @@ const Campaigns = () => {
               key={user._id}
               className="bg-white shadow-md rounded-xl p-5 w-full max-w-xs hover:shadow-xl hover:scale-105 transform transition-all duration-300 flex flex-col justify-between"
             >
-              {/* Campaign Title */}
+              
               {user.title && (
                 <h2 className="text-lg font-bold text-amber-600 mb-1 text-center uppercase">
                   {user.title}
                 </h2>
               )}
 
-              {/* Campaign Name */}
+              
               <h3 className="text-md font-semibold text-gray-800 mb-2 text-center uppercase">
                 {user.name}
               </h3>
 
-              {/* Description */}
+              
               {user.desc && (
                 <p className="text-gray-600 text-sm mb-2 line-clamp-3 text-center">
                   {user.desc}
                 </p>
               )}
 
-              {/* City */}
+             
               <p className="text-gray-600 mb-1 text-center">City: {user.city}</p>
 
-              {/* Target */}
+             
               {user.target && (
                 <p className="text-gray-700 mb-3 text-sm font-medium text-center">
                   🎯 Target: {user.target}
                 </p>
               )}
 
-              {/* Action Button */}
+             
               <button
                 className="mt-auto px-4 py-2 bg-amber-500 text-white rounded-md hover:bg-green-600 transition uppercase font-medium"
                 onClick={() => console.log("View campaign:", user.name)}
               >
-                View Campaign
+                Donate
               </button>
             </div>
 
