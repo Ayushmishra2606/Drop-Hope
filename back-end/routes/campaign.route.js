@@ -28,4 +28,6 @@ cmpRouter.post('/upload' , auth , upload.single('image') , async(req , res) =>{
 })
 
 
+
+
 export default cmpRouter;

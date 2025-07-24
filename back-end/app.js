@@ -31,6 +31,7 @@ app.use('/user', Indrouter)
 app.use('/campaign',cmpRouter)
 app.use('/info', infoRouter)
 app.use('/api', apiRouter)
+app.use("/api", cmpRouter);
 
 app.get("/check-auth", auth, (req, res) => {
     res.status(200).json({ message: "Authenticated", user: req.user });
