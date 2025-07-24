@@ -1,6 +1,9 @@
 import Footer from "../components/Footer";
 import NavbarNgo from "../components/NavbarNgo";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from 'axios'
+
 
 
 const NGOdashboard=()=>{ 
@@ -9,6 +12,24 @@ const NGOdashboard=()=>{
     { name: "Profile", path: "/profile" },
     { name: "Campaigns", path: "/campaign" },
   ];
+
+  const [username, setUsername] = useState("");
+
+   
+
+    useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/info", { withCredentials: true }); 
+        setUsername(response.data.username);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+        setUsername("Guest");
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   const navigate = useNavigate()
 
@@ -20,6 +41,9 @@ const NGOdashboard=()=>{
             <div className="p-2"></div>
             
             <NavbarNgo/>
+            <div className="text-2xl italic mt-5 mx-25 w-[15%] font-bold">
+                Welcome , {username} 
+            </div>
            
             <div className="bg-white h-screen ">
                 <div className="px-4 py-4 font-bold text-2xl   flex flex-col justify-center  items-center">
