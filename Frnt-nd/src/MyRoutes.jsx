@@ -92,11 +92,13 @@ const MyRoutes = () => {
         }
       />
       <Route
-        path="/newcampaign"
+        path="/ngo/newcampaign"
         element={
+          <ProtectedRoute allowedRoles={["ngo"]}>
             <Suspense fallback={<div className="text-center">Loading...</div>}>
               <Newcampaign />
             </Suspense>
+            </ProtectedRoute>
         }
       />
     </Routes>

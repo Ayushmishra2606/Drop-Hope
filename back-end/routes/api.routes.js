@@ -30,6 +30,38 @@ apiRouter.post('/campaigns', auth, async (req, res) => {
   }
 });
 
+apiRouter.post('/mycampaigns', auth, async (req, res) => {
+  const userId = req.user.id; 
+  try {
+    const myCmp = await Cmp.find(
+      { user_id: userId }, 
+      'name title city desc target image' 
+    );
+
+    res.json(myCmp);
+  } catch (error) {
+    console.error('Error fetching campaigns:', error);
+    res.status(500).json({ error: 'Not Found' });
+  }
+});
+
+apiRouter.post('/myRequests', auth, async (req, res) => {
+  const userId = req.user.id; 
+
+  try {
+    const myReq = await Help.find(
+      { user_id: userId }, 
+      'name context city helpType urgency' 
+    );
+
+    res.json(myReq);
+  } catch (error) {
+    console.error('Error fetching campaigns:', error);
+    res.status(500).json({ error: 'Not Found' });
+  }
+});
+
+
 
 
 export default apiRouter;
