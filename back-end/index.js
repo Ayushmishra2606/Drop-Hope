@@ -16,7 +16,7 @@ dotenv.config();
 connectDB();
 
 app.use(cors({
-  origin: "https://drop-hope-frontend.vercel.app/",
+  origin: "https://drop-hope-frontend.vercel.app",
   credentials: true
 }));
 app.use(express.json());
