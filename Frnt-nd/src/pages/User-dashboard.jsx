@@ -46,15 +46,15 @@ const Userdashboard=()=>{
             
             <div className="flex gap-4 justify-around mt-5">
                 <div className="w-[30%] h-[100px] bg-white rounded-xl border-b-neutral-500 shadow-2xl flex items-center flex-col justify-center">
-                    <p className="text-3xl font-semibold">❤️ ₹4,500</p> 
+                    <p className="text-3xl font-semibold">❤️ ₹0</p> 
                     <p className="font-semibold font-sans text-[#64748B]">Total Donations Made</p>
                 </div>
                 <div className="w-[30%] h-[100px] bg-white rounded-xl border-b-neutral-500 shadow-2xl flex items-center flex-col justify-center">
-                    <p className="text-3xl font-semibold">🎁 12</p> 
+                    <p className="text-3xl font-semibold">🎁 0</p> 
                     <p className="font-semibold font-sans text-[#64748B]">Total Items Donated</p>
                 </div>
                 <div className="w-[30%] h-[100px] bg-white rounded-xl border-b-neutral-500 shadow-2xl flex items-center flex-col justify-center">
-                    <p className="text-3xl font-semibold">⏳ 3</p> 
+                    <p className="text-3xl font-semibold">⏳ 0</p> 
                     <p className="font-semibold font-sans text-[#64748B]">Requests Received Help</p>
                 </div>
             </div>
