@@ -31,8 +31,6 @@ export default function CreateCampaignForm() {
       });
 
       alert("Campaign Registered , your Campaign Will be On Shortly");
-
-      reset();
     } catch (error) {
 
       const message =
@@ -41,6 +39,7 @@ export default function CreateCampaignForm() {
         "Something went wrong. Please try again.";
       alert(message);
     }
+    reset();
   };
 
   return (

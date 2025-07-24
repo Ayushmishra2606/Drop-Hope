@@ -2,6 +2,7 @@ import express from 'express'
 import upload from '../config/multer.config.js'
 import auth from '../middleware/auth.js'
 import Cmp from '../models/campain.module.js'
+import { getStorage } from "firebase-admin/storage";
 
 const cmpRouter = express.Router();
 
