@@ -10,22 +10,26 @@ const cmpRouter = express.Router();
 cmpRouter.use(express.json());
 cmpRouter.use(express.urlencoded({ extended: true }));
 
-cmpRouter.post('/upload' , auth , upload.single('image') , async(req , res) =>{
-    const {name , title , city , description , target ,} = req.body;
-    try {
-        const newCpn = await Cmp.create({
-            name,
-            title,
-            city,
-            desc:description,
-            target,
-            user_id: req.user.id,
-            image: req.file.path
-        })
-    } catch (error) {
-        res.status(500).json({ message: "Coundn't Start a Campaign , Try again later " });
-    }
-})
+cmpRouter.post('/upload', auth, upload.single('image'), async (req, res) => {
+  const { name, title, city, description, target } = req.body;
+
+  try {
+    const newCpn = await Cmp.create({
+      name,
+      title,
+      city,
+      desc: description,
+      target,
+      user_id: req.user.id,
+      image: req.file ? req.file.path : "", // ✅ Safe fallback
+    });
+
+    res.status(201).json({ message: "Campaign created successfully", campaign: newCpn });
+  } catch (error) {
+    res.status(500).json({ message: "Couldn't start a campaign, try again later" });
+  }
+});
+
 
 
 
