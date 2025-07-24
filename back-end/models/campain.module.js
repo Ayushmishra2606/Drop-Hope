@@ -28,7 +28,7 @@ const campainSchema = new mongoose.Schema({
   },
   image:{
     type:String,
-    required:true,
+    required:false,
     trim:true,
   },
   user_id:{
