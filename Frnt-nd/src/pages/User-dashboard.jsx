@@ -101,32 +101,47 @@ const Userdashboard = () => {
         </button>
       </div>
 
-      <h1 className="text-2xl font-bold text-[#2563EB] mb-4 mx-7">
-        Your Requests
-      </h1>
-      <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-[80vw]">
-        {campaigns.length === 0 && (
-          <p className="col-span-full text-center text-gray-500">
-            You haven’t created any campaigns yet.
-          </p>
-        )}
-        {campaigns.map((cmp, idx) => (
-          <div
-            key={idx}
-            className="border border-gray-200 rounded-xl shadow-md p-4 bg-white hover:shadow-lg transition "
-          >
-            <h3 className="text-xl font-semibold text-[#2563EB]">
-              Help , {cmp.name}
-            </h3>
-            <p className="text-gray-600 line-clamp-3">{cmp.context}</p>
-            <p className="text-sm text-gray-500 mt-1">City: {cmp.city}</p>
-            <p className="text-sm text-gray-500">
-              {cmp.name} Needs {cmp.helpType}
-            </p>
-            <p className="text-gray-600 line-clamp-3">{cmp.urgency}</p>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-6 py-4">
+        {/* Recent Donations */}
+        <div className="bg-white border-white shadow-2xl rounded-xl p-6 h-fit">
+          <h1 className="font-bold px-4 py-4 text-xl">Recent Donations</h1>
+          <div className="px-4 py-2 space-y-4">
+            <div className="flex flex-col">
+              <span>No Donation Found</span>
+            </div>
           </div>
-        ))}
+        </div>
+
+        {/* Your Requests */}
+        <div className="border border-gray-200 rounded-xl shadow-md p-4 bg-white hover:shadow-lg transition">
+          <h1 className="text-2xl font-bold text-[#2563EB] mb-4">Your Requests</h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {campaigns.length === 0 && (
+              <p className="col-span-full text-center text-gray-500">
+                You haven’t created any campaigns yet.
+              </p>
+            )}
+            {campaigns.map((cmp, idx) => (
+              <div
+                key={idx}
+                className="border border-gray-200 rounded-xl shadow-md p-4 bg-white hover:shadow-lg transition"
+              >
+                <h3 className="text-xl font-semibold text-[#2563EB]">
+                  Help, {cmp.name}
+                </h3>
+                <p className="text-gray-600 line-clamp-3">{cmp.context}</p>
+                <p className="text-sm text-gray-500 mt-1">City: {cmp.city}</p>
+                <p className="text-sm text-gray-500">
+                  {cmp.name} Needs {cmp.helpType}
+                </p>
+                <p className="text-gray-600 line-clamp-3">{cmp.urgency}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
 
       <Footer />
     </div>
