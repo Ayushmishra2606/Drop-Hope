@@ -23,10 +23,11 @@ const Userdashboard = () => {
         console.error("Error fetching user info:", error);
       }
     };
+    fetchUserInfo()
   }, []);
 
   useEffect(() => {
-    const fetchCampaigns = async () => {
+  const fetchCampaigns = async () => {
       try {
         const response = await axios.post(
           "http://localhost:3000/api/myRequests",
@@ -49,7 +50,7 @@ const Userdashboard = () => {
 
   const donate = () => navigate("/user/donate");
   const help = () => navigate("/user/help");
-  const campaign = () => navigate("/user/help");
+  const campaign = () => navigate("/user/campaigns");
 
   return (
     <div className="bg-neutral-100 min-h-screen">
@@ -97,7 +98,7 @@ const Userdashboard = () => {
           className="text-2xl bg-[#01cf75] rounded-2xl px-8 py-4"
           onClick={campaign}
         >
-          Request Help
+          View Campaigns
         </button>
       </div>
 
