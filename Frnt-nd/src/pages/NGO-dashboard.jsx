@@ -19,9 +19,12 @@ const NGOdashboard = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get("https://drop-hope-backend.onrender.com/info", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_BASE_URL}/info`,
+          {
+            withCredentials: true,
+          }
+        );
         setUsername(response.data.username);
       } catch (error) {
         console.error("Error fetching user info:", error);
@@ -42,7 +45,7 @@ const NGOdashboard = () => {
     const fetchCampaigns = async () => {
       try {
         const response = await axios.post(
-          "https://drop-hope-backend.onrender.com/api/mycampaigns",
+          `${import.meta.env.VITE_API_BASE_URL}/api/mycampaigns`,
           {}, // empty body for POST
           { withCredentials: true }
         );
@@ -56,18 +59,34 @@ const NGOdashboard = () => {
     };
 
     fetchCampaigns();
-  }, []);
+  }, [campaigns]);
 
   if (loading) return <div className="text-center mt-10">Loading...</div>;
+
+  const handleDelete = async (id) => {
+
+    const confirmed = window.confirm(
+      "Are you sure you want to Remove Your Campaign?"
+    );
+
+    if (confirmed) {
+      try {
+        await axios.delete(
+          `${import.meta.env.VITE_API_BASE_URL}/api/deleteCmp/${id}`,
+          { withCredentials: true }
+        );
+      } catch (error) {
+        console.log("Failed to delete campaign:", error);
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col">
       <div className="p-2"></div>
 
       <NavbarNgo />
-      <div className="text-2xl italic mt-5 mx-25 w-[15%] font-bold">
-        
-      </div>
+      <div className="text-2xl italic mt-5 mx-25 w-[15%] font-bold"></div>
 
       <div className="bg-white h-screen ">
         <div className="px-4 py-4 font-bold text-2xl   flex flex-col justify-center  items-center">
@@ -80,7 +99,9 @@ const NGOdashboard = () => {
           </button>
         </div>
 
-        <h1 className="text-2xl font-bold text-[#2563EB] mb-4 mx-7">Your Campaigns</h1>
+        <h1 className="text-2xl font-bold text-[#2563EB] mb-4 mx-7">
+          Your Campaigns
+        </h1>
 
         <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-[80vw]">
           {campaigns.length === 0 && (
@@ -99,6 +120,7 @@ const NGOdashboard = () => {
               <p className="text-gray-600 line-clamp-3">{cmp.desc}</p>
               <p className="text-sm text-gray-500 mt-1">City: {cmp.city}</p>
               <p className="text-sm text-gray-500">Target: ₹{cmp.target}</p>
+              <button className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition uppercase font-medium" onClick={() => handleDelete(cmp._id)} >Delete Campaign</button>
             </div>
           ))}
         </div>
