@@ -9,13 +9,15 @@ const Userdashboard = () => {
 
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
+ 
+  
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get("https://drop-hope-backend.onrender.com/info", {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/info`, {
           withCredentials: true,
         });
         setUsername(response.data.username);
@@ -30,23 +32,37 @@ const Userdashboard = () => {
   const fetchCampaigns = async () => {
       try {
         const response = await axios.post(
-          "https://drop-hope-backend.onrender.com/api/myRequests",
+          `${import.meta.env.VITE_API_BASE_URL}/api/myRequests`,
           {},
           { withCredentials: true }
         );
         setCampaigns(response.data);
       } catch (error) {
         console.error("Failed to fetch campaigns:", error);
-        alert("Could not fetch your campaigns.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchCampaigns();
-  }, []);
+  }, [campaigns]);
 
   if (loading) return <div className="text-center mt-10">Loading...</div>;
+
+  const handleDelete = async (id)=>{
+    const confirmed = window.confirm("Are you sure you want to Delete Request ?");
+
+    if (confirmed) {
+      try {
+
+        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/deleteReq/${id}`,
+      { withCredentials: true })
+
+      } catch (error) {
+        console.log('Failed to delete campaign:', error);
+      }
+    }
+  }
 
   const donate = () => navigate("/user/donate");
   const help = () => navigate("/user/help");
@@ -114,7 +130,7 @@ const Userdashboard = () => {
           </div>
         </div>
 
-        {/* Your Requests */}
+        
         <div className="border border-gray-200 rounded-xl shadow-md p-4 bg-white hover:shadow-lg transition">
           <h1 className="text-2xl font-bold text-[#2563EB] mb-4">Your Requests</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -137,6 +153,7 @@ const Userdashboard = () => {
                   {cmp.name} Needs {cmp.helpType}
                 </p>
                 <p className="text-gray-600 line-clamp-3">{cmp.urgency}</p>
+                <button className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition uppercase font-medium" onClick={() => handleDelete(cmp._id)} >Delete Request</button>
               </div>
             ))}
           </div>
