@@ -21,8 +21,13 @@ apiRouter.post('/donations', auth, async (req, res) => {
 
 apiRouter.post('/campaigns', auth, async (req, res) => {
   const limit = parseInt(req.body.limit) || 10;
+  const page = parseInt(req.body.page) || 1;
+
+  const skip = (page - 1) * limit;
+
   try {
     const users = await Cmp.find({}, 'name title city desc target image')
+      .skip(skip)
       .limit(limit);
     res.json(users);
   } catch (err) {
@@ -56,8 +61,27 @@ apiRouter.post('/myRequests', auth, async (req, res) => {
 
     res.json(myReq);
   } catch (error) {
-    console.error('Error fetching campaigns:', error);
     res.status(500).json({ error: 'Not Found' });
+  }
+});
+
+apiRouter.delete('/deleteReq/:id', auth, async (req, res) => {
+
+  try {
+     await Help.findByIdAndDelete(req.params.id)
+    res.json({message: 'campaign delete'});
+  } catch (error) {
+    res.status(500).json({ error: 'Server Error , Try again Later' });
+  }
+});
+
+apiRouter.delete('/deleteCmp/:id', auth, async (req, res) => {
+
+  try {
+     await Cmp.findByIdAndDelete(req.params.id)
+    res.json({message: 'campaign delete'});
+  } catch (error) {
+    res.status(500).json({ error: 'Server Error , Try again Later' });
   }
 });
 

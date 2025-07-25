@@ -15,7 +15,7 @@ export default function RequestHelpForm() {
 
   const onSubmit = async (data) => {
     try{
-      await axios.post('https://drop-hope-backend.onrender.com/user/help' , data ,{
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/help` , data ,{
         withCredentials:true ,
       })
       
