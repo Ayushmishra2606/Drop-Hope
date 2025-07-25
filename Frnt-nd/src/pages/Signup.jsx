@@ -39,7 +39,7 @@ const Signup = () => {
   const onSubmit = async (e) => {
     if (role === "ngo") {
       try {
-        await axios.post("https://drop-hope-backend.onrender.com/ngo/register", formData);
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/ngo/register`, formData);
 
         alert("Registration Successful");
 
@@ -50,7 +50,7 @@ const Signup = () => {
       
     }else{
       try {
-        await axios.post("https://drop-hope-backend.onrender.com/user/register", formData);
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/register`, formData);
 
         alert("Registration Successful");
 

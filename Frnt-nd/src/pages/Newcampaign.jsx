@@ -1,10 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import NavbarNgo from "../components/NavbarNgo";
 import axios from "axios";
 
 export default function CreateCampaignForm() {
+
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -14,32 +18,31 @@ export default function CreateCampaignForm() {
 
   const onSubmit = async (formData) => {
     const data = new FormData();
-
-    data.append("title", formData.title);
     data.append("name", formData.name);
-    data.append("description", formData.description);
+    data.append("title", formData.title);
     data.append("city", formData.city);
+    data.append("description", formData.description);
     data.append("target", formData.target);
-    data.append("image", formData.image[0]);
-
+    if (formData.image?.[0]) data.append("image", formData.image[0]);
     try {
-      await axios.post("https://drop-hope-backend.onrender.com/campaign/upload",data, {
+
+      setLoading(true);
+
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/upload`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
         withCredentials: true,
       });
-
-      alert("Campaign Registered , your Campaign Will be On Shortly");
+      alert("Shortly Your Campaign Will Be Ready")
+      reset()
     } catch (error) {
-
-      const message =
-        error?.response?.data?.message ||
-        error?.message ||
-        "Something went wrong. Please try again.";
-      alert(message);
+      alert("Could'nt Start Your Campaign Try Again Latter")
+      reset()
+    }finally {
+      setLoading(false);
     }
-    reset();
+
   };
 
   return (
@@ -165,7 +168,8 @@ export default function CreateCampaignForm() {
                 type="submit"
                 className="bg-[#2563EB] hover:bg-blue-700 text-white font-medium py-2 px-6 rounded text-lg transition-all"
               >
-                Run Your Campaign
+                {loading ? "Uploading..." : "Run Your Campaign Campaign"}
+
               </button>
             </div>
           </form>

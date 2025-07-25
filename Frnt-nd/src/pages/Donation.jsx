@@ -12,7 +12,7 @@ const Donation = () => {
     async function fetchUsers(limit = 10) {
       try {
         const response = await axios.post(
-          "https://drop-hope-backend.onrender.com/api/donations",
+          `${import.meta.env.VITE_API_BASE_URL}/api/donations`,
           { limit },
           { withCredentials: true }
         );
