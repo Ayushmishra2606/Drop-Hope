@@ -106,12 +106,14 @@ Indrouter.post("/help", auth, async (req, res) => {
       context,
       helpType,
       urgency,
-      user_id: req.user.id
+      user_id: req.user.id,
+      mail: req.user.email
     });
 
     res.status(201).json({ message: "You Have Been Heard" });
 
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Your Request Have Not Been Registerd , Try again " });
   }
 });
