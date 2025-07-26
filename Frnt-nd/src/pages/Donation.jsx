@@ -26,6 +26,7 @@ const Donation = () => {
       } catch (err) {
 
         console.error("Error fetching users:", err);
+
         setError("Failed to fetch donations");
 
       } finally {
