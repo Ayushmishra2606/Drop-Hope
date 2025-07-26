@@ -35,6 +35,11 @@ const helpSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  mail: {
+        type: String,
+        required: true,
+        trim: true
+  }
 });
 
 const Help = mongoose.model("Help", helpSchema);

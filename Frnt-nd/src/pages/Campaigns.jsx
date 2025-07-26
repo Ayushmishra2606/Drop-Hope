@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavbarUser from "../components/NavbarUser";
 import Footer from "../components/Footer";
@@ -6,9 +6,7 @@ import Footer from "../components/Footer";
 const Campaigns = () => {
   const [users, setUsers] = useState([]);
   const [page, setpage] = useState(1);
-
-  const LoadC = useRef();
-  const prevC = useRef();
+  const [amounts, setAmounts] = useState({});
 
   useEffect(() => {
     const limit = 10;
@@ -35,6 +33,45 @@ const Campaigns = () => {
 
   const load = () => {
     setpage(page + 1);
+  };
+
+  const handleAmountChange = (id, value) => {
+    setAmounts((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const loadRazorpay = () =>
+    new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      document.body.appendChild(script);
+    });
+
+  const handleDonate = async (id) => {
+    const amount = amounts[id];
+    if (!amount || amount <= 0) return alert("Enter a valid amount");
+
+    await loadRazorpay();
+
+    const { data: order } = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/api/createOrder`,
+      { amount }
+    );
+
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: order.amount,
+      currency: "INR",
+      name: "DropHope",
+      description: "Donation Payment",
+      order_id: order.id,
+      handler: function (res) {
+        alert("Thanks for your Donation");
+      },
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
   };
 
   return (
@@ -92,10 +129,16 @@ const Campaigns = () => {
                     🎯 Target: {user.target}
                   </p>
                 )}
-
+                <input
+                  type="number"
+                  value={amounts[user._id] || ""}
+                  onChange={(e) => handleAmountChange(user._id, e.target.value)}
+                  placeholder="Enter donation amount"
+                  className="border p-2 my-4"
+                />
                 <button
                   className="mt-auto px-4 py-2 bg-amber-500 text-white rounded-md hover:bg-green-600 transition uppercase font-medium"
-                  onClick={() => console.log("View campaign:", user.name)}
+                  onClick={() => handleDonate(user._id)}
                 >
                   Donate
                 </button>
