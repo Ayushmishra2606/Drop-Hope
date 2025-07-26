@@ -4,6 +4,7 @@ import { FaHandsHelping } from "react-icons/fa";
 import Footer from "../components/Footer";
 import NavbarUser from "../components/NavbarUser";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function RequestHelpForm() {
   const {
@@ -19,12 +20,12 @@ export default function RequestHelpForm() {
         withCredentials:true ,
       })
       
-      alert('Registered')
-
+      toast.success('Request Registered')
       reset()
-    }catch(error){
-      alert(error.response.data.message)
 
+    }catch(error){
+
+      toast.error('Your Request Has Not Been Registered'+error.response.data.message)
       reset()
     }
     

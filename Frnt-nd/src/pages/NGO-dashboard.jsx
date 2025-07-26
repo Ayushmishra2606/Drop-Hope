@@ -3,6 +3,7 @@ import NavbarNgo from "../components/NavbarNgo";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const NGOdashboard = () => {
   const navLinks = [
@@ -52,7 +53,7 @@ const NGOdashboard = () => {
         setCampaigns(response.data);
       } catch (error) {
         console.error("Failed to fetch campaigns:", error);
-        alert("Could not fetch your campaigns.");
+        toast.error("Could not fetch your campaigns.");
       } finally {
         setLoading(false);
       }
@@ -75,7 +76,11 @@ const NGOdashboard = () => {
           `${import.meta.env.VITE_API_BASE_URL}/api/deleteCmp/${id}`,
           { withCredentials: true }
         );
+
+        toast("Your campaign Has Been Removed")
+
       } catch (error) {
+        toast.error("Server Error , Try again later")
         console.log("Failed to delete campaign:", error);
       }
     }

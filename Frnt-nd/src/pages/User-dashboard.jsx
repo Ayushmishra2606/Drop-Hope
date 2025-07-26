@@ -3,6 +3,7 @@ import NavbarUser from "../components/NavbarUser";
 import { useNavigate } from "react-router";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Userdashboard = () => {
   const [username, setUsername] = useState("Guest");
@@ -57,6 +58,8 @@ const Userdashboard = () => {
 
         await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/deleteReq/${id}`,
       { withCredentials: true })
+
+      toast('Request Deleted')
 
       } catch (error) {
         console.log('Failed to delete campaign:', error);
