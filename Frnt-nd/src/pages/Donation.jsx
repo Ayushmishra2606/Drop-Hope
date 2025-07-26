@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavbarUser from "../components/NavbarUser";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 
 const Donation = () => {
   const [users, setUsers] = useState([]);
@@ -25,8 +26,8 @@ const Donation = () => {
       } catch (err) {
 
         console.error("Error fetching users:", err);
-
         setError("Failed to fetch donations");
+
       } finally {
         setLoading(false);
       }
@@ -57,7 +58,7 @@ const Donation = () => {
 
   const handleDonate = async (id) => {
     const amount = amounts[id];
-    if (!amount || amount <= 0) return alert("Enter a valid amount");
+    if (!amount || amount <= 0) return toast("Enter a valid amount");
 
     await loadRazorpay();
 
@@ -74,7 +75,7 @@ const Donation = () => {
       description: "Donation Payment",
       order_id: order.id,
       handler: function (res) {
-        alert("Thanks for your Donation");
+        toast.success("Thanks for your Donation");
       },
     };
 
@@ -157,7 +158,7 @@ const Donation = () => {
                   </div>
                 )}
                 {user.helpType != "Money" &&(
-                  <p className="text-gray-600 mb-1">We don't Provide logistics  <br/>contact {user.name} at <strong>{user.mail}</strong></p>
+                  <p className="text-gray-600 mb-1">We don't Provide logistics<br/>contact {user.name} at <strong>{user.mail}</strong></p>
                 )
                 }
               </div>

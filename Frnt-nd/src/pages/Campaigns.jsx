@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NavbarUser from "../components/NavbarUser";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 
 const Campaigns = () => {
   const [users, setUsers] = useState([]);
@@ -49,7 +50,7 @@ const Campaigns = () => {
 
   const handleDonate = async (id) => {
     const amount = amounts[id];
-    if (!amount || amount <= 0) return alert("Enter a valid amount");
+    if (!amount || amount <= 0) return toast("Enter a valid amount");
 
     await loadRazorpay();
 
@@ -66,7 +67,7 @@ const Campaigns = () => {
       description: "Donation Payment",
       order_id: order.id,
       handler: function (res) {
-        alert("Thanks for your Donation");
+        toast.success("Thanks for your Donation");
       },
     };
 

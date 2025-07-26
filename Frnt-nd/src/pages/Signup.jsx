@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [formData, setformData] = useState({});
@@ -41,22 +42,23 @@ const Signup = () => {
       try {
         await axios.post(`${import.meta.env.VITE_API_BASE_URL}/ngo/register`, formData);
 
-        alert("Registration Successful");
+        toast.success("Registration Successful");
 
         navigate("/login");
+
       } catch (error) {
-        alert("Registration Failed :" + error.response.data.message);
+        toast.error("Registration Failed :" + error.response.data.message);
       }
       
     }else{
       try {
         await axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/register`, formData);
 
-        alert("Registration Successful");
-
+        toast.success("Registration Successful");
         navigate("/login");
+        
       } catch (error) {
-        alert("Registration Failed : " + error.response.data.message);
+        toast.error("Registration Failed : " + error.response.data.message);
       }
     }
   };
