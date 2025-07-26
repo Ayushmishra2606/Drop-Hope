@@ -24,7 +24,6 @@ export default function CreateCampaignForm() {
     data.append("description", formData.description);
     data.append("target", formData.target);
     if (formData.image?.[0]) data.append("image", formData.image[0]);
-
     try {
 
       setLoading(true);

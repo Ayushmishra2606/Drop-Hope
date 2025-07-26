@@ -20,6 +20,8 @@ const Campaign = lazy(()=> import('./pages/Campaigns'))
 import ProtectedRoute from "./components/ProtectedRoutes"; 
 
 
+import ProtectedRoute from "./components/ProtectedRoutes"; 
+
 const MyRoutes = () => {
   return (
     <Routes>
