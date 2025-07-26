@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import NavbarNgo from "../components/NavbarNgo";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function CreateCampaignForm() {
-
   const [loading, setLoading] = useState(false);
 
   const {
@@ -24,25 +24,33 @@ export default function CreateCampaignForm() {
     data.append("description", formData.description);
     data.append("target", formData.target);
     if (formData.image?.[0]) data.append("image", formData.image[0]);
+
     try {
 
       setLoading(true);
 
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/upload`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-      });
-      alert("Shortly Your Campaign Will Be Ready")
-      reset()
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/upload`,
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
+
+      toast.success("Shortly Your Campaign Will Be Ready");
+      reset();
+
     } catch (error) {
-      alert("Could'nt Start Your Campaign Try Again Latter")
-      reset()
-    }finally {
+
+      toast.error("Could'nt Start Your Campaign Try Again Latter");
+      reset();
+
+    } finally {
       setLoading(false);
     }
-
   };
 
   return (
@@ -169,7 +177,6 @@ export default function CreateCampaignForm() {
                 className="bg-[#2563EB] hover:bg-blue-700 text-white font-medium py-2 px-6 rounded text-lg transition-all"
               >
                 {loading ? "Uploading..." : "Run Your Campaign Campaign"}
-
               </button>
             </div>
           </form>
