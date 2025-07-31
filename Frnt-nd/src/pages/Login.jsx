@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom"; 
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -50,11 +51,11 @@ const Login = () => {
         }
       } else {
         const error = await response.json();
-        alert(error.message || "Login Failed");
+        toast.error(error.message || "Login Failed");
       }
     } catch (error) {
       console.error("Login request failed:", error);
-      alert("Login Failed due to network or server error.");
+      toast.error("Login Failed due to network or server error.");
     }
   };
 

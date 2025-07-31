@@ -12,8 +12,7 @@ dist
 dist-ssr
 *.local
 .env
-.env.local
-ayush-901e4-firebase-adminsdk-fbsvc-e7d273825c.json
+
 
 # Editor directories and files
 .vscode/*

@@ -9,43 +9,41 @@ const individualSchema = new mongoose.Schema({
     trim: true,
     maxlength: 15,
     lowercase: true,
-    unique: true
+    unique: true,
   },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
-        trim: true
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 6,
-        trim: true
-    },
-    role: {
-        type: String,
-        enum: ['ngo', 'individual'],
-        required: true,
-        lowercase: true,
-        trim: true
-    },
-    fullName: {
-        type: String,
-        required: true,
-        lowercase: true,
-        trim: true
-    },
-    city: {
-        type: String,
-        required: true,
-        lowercase: true,
-        trim: true
-    },
-
-})
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6,
+    trim: true,
+  },
+  role: {
+    type: String,
+    enum: ["ngo", "individual"],
+    required: true,
+    lowercase: true,
+    trim: true,
+  },
+  fullName: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true,
+  },
+  city: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true,
+  },
+});
 
 const individual = mongoose.model("Individual", individualSchema);
 
-export default individual ;
+export default individual;
