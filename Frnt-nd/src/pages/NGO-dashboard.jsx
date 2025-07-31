@@ -13,18 +13,18 @@ const NGOdashboard = () => {
   ];
 
   const [username, setUsername] = useState("");
-
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API_BASE_URL}/info`,
-          {
-            withCredentials: true,
-          }
+
+          { withCredentials: true }
         );
         setUsername(response.data.username);
       } catch (error) {
@@ -36,18 +36,14 @@ const NGOdashboard = () => {
     fetchUserInfo();
   }, []);
 
-  const navigate = useNavigate();
-
-  const campaign = () => {
-    navigate("newcampaign");
-  };
-
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_BASE_URL}/api/mycampaigns`,
-          {}, // empty body for POST
+
+          {},
+
           { withCredentials: true }
         );
         setCampaigns(response.data);
@@ -61,6 +57,26 @@ const NGOdashboard = () => {
 
     fetchCampaigns();
   }, [campaigns]);
+
+  const campaign = () => {
+    navigate("newcampaign");
+  };
+
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to remove your campaign?");
+    if (confirmed) {
+      try {
+        await axios.delete(
+          `${import.meta.env.VITE_API_BASE_URL}/api/deleteCmp/${id}`,
+          { withCredentials: true }
+        );
+        // Refresh campaigns
+        setCampaigns((prev) => prev.filter((cmp) => cmp._id !== id));
+      } catch (error) {
+        console.log("Failed to delete campaign:", error);
+      }
+    }
+  };
 
   if (loading) return <div className="text-center mt-10">Loading...</div>;
 
@@ -104,31 +120,43 @@ const NGOdashboard = () => {
           </button>
         </div>
 
-        <h1 className="text-2xl font-bold text-[#2563EB] mb-4 mx-7">
-          Your Campaigns
-        </h1>
+        <div className="flex flex-col items-center px-4 py-8">
+          <h1 className="text-3xl font-bold text-[#2563EB] mb-6 text-center">
+            Your Campaigns
+          </h1>
 
-        <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-[80vw]">
-          {campaigns.length === 0 && (
-            <p className="col-span-full text-center text-gray-500">
-              You haven’t created any campaigns yet.
-            </p>
-          )}
-          {campaigns.map((cmp, idx) => (
-            <div
-              key={idx}
-              className="border border-gray-200 rounded-xl shadow-md p-4 bg-white hover:shadow-lg transition "
-            >
-              <h3 className="text-xl font-semibold text-[#2563EB]">
-                {cmp.title}
-              </h3>
-              <p className="text-gray-600 line-clamp-3">{cmp.desc}</p>
-              <p className="text-sm text-gray-500 mt-1">City: {cmp.city}</p>
-              <p className="text-sm text-gray-500">Target: ₹{cmp.target}</p>
-              <button className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition uppercase font-medium" onClick={() => handleDelete(cmp._id)} >Delete Campaign</button>
-            </div>
-          ))}
+          <div className="max-w-7xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {campaigns.length === 0 ? (
+              <p className="col-span-full text-center text-gray-500 text-lg">
+                You haven’t created any campaigns yet.
+              </p>
+            ) : (
+              campaigns.map((cmp, idx) => (
+                <div
+                  key={idx}
+                  className="border border-gray-200 rounded-2xl shadow-md p-6 bg-white hover:shadow-lg transition duration-200 flex flex-col justify-between"
+                >
+                  <div>
+                    <h3 className="text-xl font-semibold text-[#2563EB] mb-2">
+                      {cmp.title}
+                    </h3>
+                    <p className="text-gray-600 line-clamp-3 mb-2">{cmp.desc}</p>
+                    <p className="text-sm text-gray-500">City: {cmp.city}</p>
+                    <p className="text-sm text-gray-500">Target: ₹{cmp.target}</p>
+                  </div>
+
+                  <button
+                    className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition uppercase font-medium"
+                    onClick={() => handleDelete(cmp._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
         </div>
+
 
         <div className="w-[80%] mx-auto mt-8">
           <h2 className="text-2xl font-bold text-[#2563EB] mb-4">

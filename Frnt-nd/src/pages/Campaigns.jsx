@@ -7,7 +7,10 @@ import { toast } from "react-toastify";
 const Campaigns = () => {
   const [users, setUsers] = useState([]);
   const [page, setpage] = useState(1);
+
+
   const [amounts, setAmounts] = useState({});
+
 
   useEffect(() => {
     const limit = 10;
@@ -35,6 +38,7 @@ const Campaigns = () => {
   const load = () => {
     setpage(page + 1);
   };
+
 
   const handleAmountChange = (id, value) => {
     setAmounts((prev) => ({ ...prev, [id]: value }));
@@ -74,6 +78,7 @@ const Campaigns = () => {
     const rzp = new window.Razorpay(options);
     rzp.open();
   };
+
 
   return (
     <>
@@ -150,6 +155,7 @@ const Campaigns = () => {
             className="h-15 w-8 round bg-blue-500 text-2xl text-white rounded-2xl absolute top-1/2 right-2"
             onClick={load}
             disabled={users.length < 10}
+
           >
             {">"}
           </button>

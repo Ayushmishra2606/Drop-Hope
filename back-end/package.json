@@ -25,7 +25,8 @@
     "mongoose": "^8.16.4",
     "multer": "^2.0.2",
     "multer-firebase-storage": "^4.1.2",
+
     "razorpay": "^2.9.6",
-    "streamifier": "^0.1.1"
+
   }
 }

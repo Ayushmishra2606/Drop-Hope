@@ -59,7 +59,9 @@ const Userdashboard = () => {
         await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/deleteReq/${id}`,
       { withCredentials: true })
 
+
       toast('Request Deleted')
+
 
       } catch (error) {
         console.log('Failed to delete campaign:', error);
