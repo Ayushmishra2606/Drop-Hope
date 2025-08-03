@@ -80,27 +80,6 @@ const NGOdashboard = () => {
 
   if (loading) return <div className="text-center mt-10">Loading...</div>;
 
-  const handleDelete = async (id) => {
-
-    const confirmed = window.confirm(
-      "Are you sure you want to Remove Your Campaign?"
-    );
-
-    if (confirmed) {
-      try {
-        await axios.delete(
-          `${import.meta.env.VITE_API_BASE_URL}/api/deleteCmp/${id}`,
-          { withCredentials: true }
-        );
-
-        toast("Your campaign Has Been Removed")
-
-      } catch (error) {
-        toast.error("Server Error , Try again later")
-        console.log("Failed to delete campaign:", error);
-      }
-    }
-  };
 
   return (
     <div className="flex flex-col">
