@@ -96,7 +96,7 @@ const Campaigns = () => {
           >
             {"<"}
           </button>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6  justify-items-center">
             {users.map((user) => (
               <div
                 key={user._id}
@@ -106,22 +106,22 @@ const Campaigns = () => {
                   <img
                     src={user.image}
                     alt="image"
-                    className="rounded w-full"
+                    className="rounded-full w-[200px] h-[200px] object-cover"
                   />
                 )}
 
                 {user.title && (
-                  <h2 className="text-lg font-bold text-amber-600 mb-1 text-center uppercase">
+                  <h2 className="text-lg font-bold text-amber-600  text-center uppercase p-0">
                     {user.title}
                   </h2>
                 )}
 
-                <h3 className="text-md font-semibold text-gray-800 mb-2 text-center uppercase">
+                <h3 className="text-md font-semibold text-gray-800 text-center uppercase p-0">
                   {user.name}
                 </h3>
 
                 {user.desc && (
-                  <p className="text-gray-600 text-sm mb-2 line-clamp-3 text-center">
+                  <p className="text-gray-600 text-sm line-clamp-3 text-center p-0">
                     {user.desc}
                   </p>
                 )}
@@ -131,7 +131,7 @@ const Campaigns = () => {
                 </p>
 
                 {user.target && (
-                  <p className="text-gray-700 mb-3 text-sm font-medium text-center">
+                  <p className="text-gray-700 mb-1 text-sm font-medium text-center">
                     🎯 Target: {user.target}
                   </p>
                 )}

@@ -18,23 +18,20 @@ const Login = () => {
   const navigate = useNavigate();
   const [type, settype] = useState("user");
 
-  const forBENE = () => {
-    beneficiary.current.style.backgroundColor = "#2563EB";
-    donor.current.style.backgroundColor = "white";
-    settype("ngo");
-  };
   const forDon = () => {
-    donor.current.style.backgroundColor = "#2563EB";
-    beneficiary.current.style.backgroundColor = "white";
     settype("user");
+  };
+
+  const forBENE = () => {
+    settype("ngo");
   };
 
   const onSubmit = async (data) => {
     try {
-      const endpoint = type === "ngo" ? `${import.meta.env.VITE_API_BASE_URL}/ngo/login` : `${import.meta.env.VITE_API_BASE_URL}/user/login`; // Ensure port 5000
+      const endpoint = type === "ngo" ? `${import.meta.env.VITE_API_BASE_URL}/ngo/login` : `${import.meta.env.VITE_API_BASE_URL}/user/login`;
       const response = await fetch(endpoint, {
         method: "POST",
-        credentials: "include", 
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,7 +39,7 @@ const Login = () => {
       });
 
       if (response.ok) {
-        
+
 
         if (type === "ngo") {
           navigate("/ngo");
@@ -61,23 +58,25 @@ const Login = () => {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="flex flex-col items-center h-[43vh] sm:h-[51vh] w-[60vw] mx-auto my-[16vh]  border-white shadow-lg lg:h-[68vh]">
-        <div className="flex flex-row h-[8vh] w-full m-0 rounded-md ">
-          <span
-            ref={donor}
-            onClick={forDon}
-            className="text-[#E5E7EB] font-bold bg-[#2563EB] mb-2 sm:text-2xl lg:text-3xl w-1/2 h-full text-center p-2 cursor-pointer"
-          >
-            Individual
-          </span>
-          <span
-            ref={beneficiary}
-            onClick={forBENE}
-            className="text-[#E5E7EB] font-bold mb-2 sm:text-2xl lg:text-3xl w-1/2 h-full text-center p-2 cursor-pointer"
-          >
-            NGO
-          </span>
+        <div className="flex w-full justify-center my-6">
+          <div className="bg-gray-200 rounded-full p-1 flex w-[65%]">
+            <button
+              onClick={forDon}
+              className={`w-1/2 text-center py-2 sm:text-xl rounded-full transition-all duration-300 ${type === "user" ? "bg-blue-600 text-white" : "text-gray-700"
+                }`}
+            >
+              Individual
+            </button>
+            <button
+              onClick={forBENE}
+              className={`w-1/2 text-center py-2 sm:text-xl rounded-full transition-all duration-300 ${type === "ngo" ? "bg-blue-600 text-white" : "text-gray-700"
+                }`}
+            >
+              NGO
+            </button>
+          </div>
         </div>
         <form
           action=""
@@ -93,8 +92,8 @@ const Login = () => {
                 message: "Invalid email address",
               },
             })}
-            placeholder="email"
-            className="h-[7vh] w-[65%] bg-black/20 p-2 border border-gray-300 rounded-md placeholder:p-4 placeholder:text-xl placeholder:text-[#64748B] focus:outline-none text-[#64748B] mt-[7vh]"
+            placeholder="Email"
+            className="h-[7vh] w-[65%] bg-white p-2 border border-gray-300 rounded-md placeholder:p-4 placeholder:text-xl placeholder:text-[#64748B] focus:outline-none text-[#64748B] mt-[7vh]"
           />
           {errors.email && (
             <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -114,7 +113,7 @@ const Login = () => {
               }
             )}
             placeholder="Password"
-            className="sm:h-[5vw] h-[6vh] w-[65%]  bg-black/20 p-2 border border-gray-300 rounded-md mb-8 placeholder:p-4 placeholder:text-xl placeholder:text-[#64748B] focus:outline-none text-[#64748B] mt-[7vh]"
+            className="sm:h-[5vw] h-[7vh] w-[65%]  bg-white p-2 border border-gray-300 rounded-md mb-8 placeholder:p-4 placeholder:text-xl placeholder:text-[#64748B] focus:outline-none text-[#64748B] mt-[7vh]"
           />
           {errors.password && (
             <p className="text-red-500 text-sm">{errors.password.message}</p>
@@ -123,18 +122,18 @@ const Login = () => {
             type="submit"
             disabled={isSubmitting}
             value="Log in"
-            className="md:h-[6vw] w-22 lg:w-[10vw] lg:h-[6vh] bg-[#7c9ee7ec] sm:text-xl rounded-xl cursor-pointer hover:bg-[#2563EB]  text-white mt-2"
+            className="md:h-[6vw] w-22 lg:w-[10vw] lg:h-[6vh] bg-[#7c9ee7ec] sm:text-xl rounded-xl cursor-pointer hover:bg-[#2563EB]  text-white mt-2 mb-10"
           />
           <a
             href="/register"
             className="text-blue-600 underline hover:text-blue-800"
           >
             {" "}
-            don't have a account?
+            don't have an account?
           </a>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
