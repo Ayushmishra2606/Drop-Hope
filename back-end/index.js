@@ -17,7 +17,7 @@ connectDB();
 
 const allowedOrigins = [
   'https://drop-hope-frontend.vercel.app',
-  'https://drop-hope-frontend-9artlzlqn-kautuks-projects.vercel.app',
+  'https://drop2hope.vercel.app',
   'http://localhost:5173' // optional: for local testing
 ];
 
